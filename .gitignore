@@ -1,0 +1,5 @@
+node_modules/
+.claude/
+tools/smoke_out.txt
+tools/tests_out.txt
+*.log

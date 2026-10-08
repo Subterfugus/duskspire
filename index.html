@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>Duskspire</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="topbar"></div>
+  <div id="app"></div>
+  <div id="overlay"></div>
+
+  <!-- Classic scripts in the contract's load order (CONTRACT.md section 1 and 10.1).
+       Engine first, then the v1 content, then the v2 content, then the UI. A file that is not written
+       yet only produces a 404 in the console. -->
+  <script src="src/engine/core.js"></script>
+  <script src="src/engine/statuses.js"></script>
+  <script src="src/engine/combat.js"></script>
+  <script src="src/engine/run.js"></script>
+  <script src="src/content/cards_berserker.js"></script>
+  <script src="src/content/cards_shade.js"></script>
+  <script src="src/content/cards_arcanist.js"></script>
+  <script src="src/content/cards_warden.js"></script>
+  <script src="src/content/cards_colorless.js"></script>
+  <script src="src/content/cards_colorless_2.js"></script>
+  <script src="src/content/relics_a.js"></script>
+  <script src="src/content/relics_b.js"></script>
+  <script src="src/content/potions.js"></script>
+  <script src="src/content/enemies_act1.js"></script>
+  <script src="src/content/enemies_act2.js"></script>
+  <script src="src/content/enemies_act3.js"></script>
+  <script src="src/content/events_a.js"></script>
+  <script src="src/content/events_b.js"></script>
+  <script src="src/content/cards_tempest.js"></script>
+  <script src="src/content/cards_occultist.js"></script>
+  <script src="src/content/cards_berserker_2.js"></script>
+  <script src="src/content/cards_shade_2.js"></script>
+  <script src="src/content/cards_arcanist_2.js"></script>
+  <script src="src/content/cards_warden_2.js"></script>
+  <script src="src/content/relics_c.js"></script>
+  <script src="src/content/potions_b.js"></script>
+  <script src="src/content/enemies_act1_b.js"></script>
+  <script src="src/content/enemies_act2_b.js"></script>
+  <script src="src/content/enemies_act3_b.js"></script>
+  <script src="src/content/events_c.js"></script>
+  <script src="src/ui/kit.js"></script>
+  <script src="src/ui/art.js"></script>
+  <script src="src/ui/audio.js"></script>
+  <script src="src/ui/fx.js"></script>
+  <script src="src/ui/screens.js"></script>
+  <script src="src/ui/combat_ui.js"></script>
+  <script src="src/ui/boot.js"></script>
+</body>
+</html>

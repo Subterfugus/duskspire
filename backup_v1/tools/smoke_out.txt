@@ -1,0 +1,84 @@
+==============================================================
+ DUSKSPIRE SMOKE REPORT
+ root: <project>
+ mode: full   elapsed: 0.3s
+==============================================================
+
+-- Files --
+  ok      src/engine/core.js
+  ok      src/engine/statuses.js
+  ok      src/engine/combat.js
+  ok      src/engine/run.js
+  ok      src/content/cards_berserker.js
+  ok      src/content/cards_shade.js
+  ok      src/content/cards_arcanist.js
+  ok      src/content/cards_warden.js
+  ok      src/content/cards_colorless.js
+  ok      src/content/relics_a.js
+  ok      src/content/relics_b.js
+  ok      src/content/potions.js
+  ok      src/content/enemies_act1.js
+  ok      src/content/enemies_act2.js
+  ok      src/content/enemies_act3.js
+  ok      src/content/events_a.js
+  ok      src/content/events_b.js
+  (src/ui/* is not loaded headlessly)
+
+-- Content --
+  Cards: 369
+    class      starter  common  uncommon  rare  special  total
+    berserker        4      24        30    16        1     75
+    shade            4      24        31    16        2     77
+    arcanist         4      24        30    16        3     77
+    warden           4      24        31    16        1     76
+    colorless        0       0        23    21        5     49
+    curse            0       0         0     0       10     10
+    status           0       0         0     0        5      5
+    all             16      96       145    85       27    369
+  Relics: 106   by rarity: starter 4, common 28, uncommon 22, rare 20, boss 14, shop 10, event 8
+  Potions: 40   by rarity: common 18, uncommon 14, rare 8
+  Enemies: 77
+    act    normal  elite  boss  minion  total
+    act 1      15      4     3       3     25
+    act 2      15      4     4       3     26
+    act 3      16      4     3       3     26
+  Encounters: 87
+    act    easy  normal  elite  boss  total
+    act 1     6      15      4     3     28
+    act 2     7      16      5     3     31
+    act 3     6      15      4     3     28
+  Events: 54   any-act 28, act 1 8, act 2 9, act 3 9
+  Statuses: 101   built-in 33/33, custom 68
+  Characters: 4 (berserker, shade, arcanist, warden)
+
+-- Dynamic tests --
+  Encounter bot fights (every encounter, 4 characters, full HP): 352 total
+      won 196, lost 156, stalled 0, hang 0, threw 0
+  Card sandbox: 1446 runs (play and hold, normal and upgraded), 16 skipped as unplayable, 0 failed
+  Potions used once each: 40 ok, 0 failed
+  Full run berserker: lost on act 3 | 48 rooms, 25 combats | lost to a3_enc_dusk_heart on act 3
+  Full run shade: WON | 48 rooms, 30 combats
+  Full run arcanist: lost on act 1 | 10 rooms, 7 combats | lost to a1_enc_ash_hierophant on act 1
+  Full run warden: WON | 48 rooms, 26 combats
+  Engine: DS.Combat, DS.Run, 29 DS members
+
+-- Bot win rates (rough balance signal, not a verdict) --
+  Act 1: single encounters 78% (90/116)   full-run combats 97% (34/35)
+  Act 2: single encounters 56% (69/124)   full-run combats 100% (28/28)
+  Act 3: single encounters 33% (37/112)   full-run combats 96% (24/25)
+  By tier (single encounters, all acts): easy 100%, normal 62%, elite 6%, boss 0%
+  berserker: a1 easy 100% | a1 normal 100% | a1 elite 0% | a1 boss 0% | a2 easy 100% | a2 normal 69% | a2 elite 0% | a2 boss 0% | a3 easy 100% | a3 normal 20% | a3 elite 0% | a3 boss 0%
+  shade: a1 easy 100% | a1 normal 100% | a1 elite 25% | a1 boss 0% | a2 easy 100% | a2 normal 50% | a2 elite 0% | a2 boss 0% | a3 easy 100% | a3 normal 20% | a3 elite 0% | a3 boss 0%
+  arcanist: a1 easy 100% | a1 normal 94% | a1 elite 25% | a1 boss 0% | a2 easy 100% | a2 normal 63% | a2 elite 0% | a2 boss 0% | a3 easy 100% | a3 normal 7% | a3 elite 0% | a3 boss 0%
+  warden: a1 easy 100% | a1 normal 100% | a1 elite 25% | a1 boss 0% | a2 easy 100% | a2 normal 75% | a2 elite 0% | a2 boss 0% | a3 easy 100% | a3 normal 40% | a3 elite 0% | a3 boss 0%
+
+-- ERRORS (0 distinct) --
+  none
+
+-- WARNINGS (2 distinct) --
+  [runs] src/content/enemies_act1.js
+      - arcanist: lost to a1_enc_ash_hierophant (act 1) despite the +1000 HP bonus
+  [runs] src/content/enemies_act3.js
+      - berserker: lost to a3_enc_dusk_heart (act 3) despite the +1000 HP bonus
+
+SMOKE RESULT: PASS

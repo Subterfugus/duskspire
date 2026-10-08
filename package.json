@@ -1,0 +1,16 @@
+{
+  "name": "duskspire",
+  "version": "2.0.0",
+  "description": "Duskspire, a Slay-the-Spire-style roguelike deckbuilder",
+  "main": "main.js",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "smoke": "node tools/smoke.js",
+    "test": "node tools/tests.js",
+    "balance": "node tools/balance.js"
+  },
+  "devDependencies": {
+    "electron": "^33"
+  }
+}
