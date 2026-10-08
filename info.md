@@ -33,9 +33,7 @@ fight played by clicking cards; reward screen (gold claim, card pick); quit to m
 reward room without losing or duplicating rewards; eight more floors of fights, an event and a treasure room;
 history, settings, how-to-play and compendium screens. No game errors in the console.
 
-**Not verified by anyone:** how the audio sounds; the shop, rest and boss-relic screens in v2 (they worked in v1 and
-the Haiku reviewer reports testing them); acts 2 and 3 in the browser; sizes other than 1280x720; the Electron
-window on v2.
+**Not verified by anyone:** how the audio sounds; the Electron window on v2. See the polish pass section below.
 
 ## What happened on day 2
 
@@ -73,19 +71,39 @@ Tuning applied on 2026-10-08 (all by hand, measured with `node tools/balance.js`
 - Choir of the Fallen: Mending Hymn heals only the most wounded enemy for 5 (was 3 to every enemy), and is used less.
   The stalemate warning is gone from the smoke test.
 
+## Polish pass (2026-10-08, later the same day) - stopped part-way at the user's request
+
+Done and checked in the browser at 1280x720 unless noted:
+- Played a whole run through all three acts to the victory screen with a scripted autopilot (enemy HP forced to 1):
+  map, fights, elites, bosses, shop, rest site and upgrade picker, events (including one that starts a fight),
+  treasure, boss relic, act 2 and act 3 backdrops, victory. No game errors.
+- After the final boss the game no longer offers a boss relic "to carry on"; it goes straight to victory.
+- Quitting mid-fight and choosing Continue now replays the same fight (same enemy HP and opening hand). Each fight is
+  seeded from run seed + act + floor + encounter in .
+- The map now scales with the window ( in ); checked at 1920x1080.
+- Unit art is larger; one or two enemies stand further right instead of bunching mid-screen.
+- Character select shows three readable sample cards instead of thumbnails plus a hover preview.
+- The "blank square" card icon was the fog emoji, which is drawn as a pale square on Windows. Replaced in 10 places.
+- Relic fanfare: smaller rings, and none for the starter relic at run start. Effects are dropped when the window
+  stops drawing frames, so they no longer freeze on screen.
+- Combat log: wrapped lines stay aligned.
+- Smoke: PASS, 0 warnings. Engine tests: PASS. (Both run after most of these edits; the log CSS and final-boss change
+  came after and only had a syntax check plus the browser run.)
+
+Not finished:
+- Electron on v2 is still unverified. Two scripted launch attempts exited without producing a result (only GPU
+  messages in the output); cause not investigated.
+- No balance changes were made in this pass. Fresh 40-run sims: Tempest 20%, Shade 8%, Arcanist 10%. Shade and
+  Arcanist mostly die in act 2 (34% and 30% survival), Tempest in act 3 (32%). 40 runs is noisy.
+- The final-boss reward screen still offers a card that can never be used.
+- Not started: README, audio check, settings/history/compendium review at other sizes.
+
 ## Known problems
 
-- Class spread is still 13-43% for the bot. Tempest falls off in act 3 (24% survival); Shade and Arcanist struggle in act 2.
-- A large ring effect plays when a relic triggers (very visible with Tempest's Wind Bell every turn). Cosmetic, but oversized.
-- A few card emoji render as a blank square on this machine (for example Still Breath). Font coverage, cosmetic.
-- `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`.
-- Leaving a fight and choosing Continue restarts that fight with a reshuffled deck (could be used to reroll a hand).
-- The map and some art use fixed pixel sizes, so they look small at 1920x1080.
-- Not verified by anyone: audio, acts 2 and 3 in the browser, larger resolutions, the Electron window on v2.
-- `backup_v1/` still holds the original working v1 game.
-
-Fixed on 2026-10-08: the End Turn button now sits above the hand, so a 10-card hand no longer slides under it
-(checked in the browser at 1280x720).
+- Class spread is still wide for the bot (Warden about 43%, Shade and Arcanist about 10%).
+-  still injects its own CSS that duplicates rules in . Harmless; left alone.
+- Not verified by anyone: audio, the Electron window on v2.
+-  still holds the original working v1 game.
 
 ## Repository
 
