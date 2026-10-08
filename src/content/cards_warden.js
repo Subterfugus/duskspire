@@ -868,7 +868,7 @@
 
   DS.defineCard({
     id: 'wd_spore_veil', name: 'Spore Veil', class: 'warden', type: 'skill', rarity: 'uncommon',
-    cost: 0, target: 'self', icon: '🌫️',
+    cost: 0, target: 'self', icon: '💨',
     desc: 'Gain 6 Block. Ethereal.',
     ethereal: true,
     effects: [{ op: 'block', amount: 6, to: 'self' }],

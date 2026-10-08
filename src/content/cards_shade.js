@@ -348,7 +348,7 @@
   // ---- common skills ----
   DS.defineCard({
     id: 'sh_cloak_step', name: 'Cloak Step', class: 'shade', type: 'skill', rarity: 'common',
-    cost: 1, target: 'self', icon: '🌫️',
+    cost: 1, target: 'self', icon: '💨',
     desc: 'Gain 7 Block.',
     effects: [{ op: 'block', amount: 7 }],
     upgrade: { desc: 'Gain 10 Block.', effects: [{ op: 'block', amount: 10 }] }

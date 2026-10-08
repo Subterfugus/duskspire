@@ -19,7 +19,6 @@
     menu: true, charselect: true, compendium: true, gameover: true, victory: true,
     history: true, settings: true, howto: true
   };
-  const CARD_FILTERS = ['all', 'berserker', 'shade', 'arcanist', 'warden', 'colorless', 'status', 'curse'];
 
   /* ================================================================
    * DOM and generic helpers
@@ -624,8 +623,15 @@
     const geo = mapGeometry(map);
     const cur = nodeId && map.nodes ? map.nodes[nodeId] : null;
     const row = cur && typeof cur.row === 'number' ? cur.row : 0;
-    const y = geo.pos({ row: row, col: 0 }).y;
+    const y = geo.pos({ row: row, col: 0 }).y * mapZoom();
     scroll.scrollTop = Math.max(0, y - scroll.clientHeight * 0.6);
+  }
+
+  // The map is laid out in pixels for a 16px root font; scale it with the rest of the UI on larger windows.
+  function mapZoom() {
+    let k = 1;
+    try { k = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16; } catch (e) { k = 1; }
+    return isFinite(k) && k > 0 ? Math.round(Math.min(3, Math.max(0.75, k)) * 100) / 100 : 1;
   }
 
   function buildMapView(map, opts) {
@@ -643,7 +649,7 @@
     }
     const wrap = el('div', {
       class: 'ds-scr-map',
-      style: 'width:' + geo.width + 'px;height:' + geo.height + 'px;'
+      style: 'width:' + geo.width + 'px;height:' + geo.height + 'px;zoom:' + mapZoom() + ';'
     });
 
     const svg = svgEl('svg', {
@@ -1144,7 +1150,17 @@
 
       // Boss rewards lead to the boss relic step (which replaces this room); every other room closes for the map.
       function continueOn() {
-        if (tier === 'boss') { go('bossrelic'); return; }
+        if (tier === 'boss') {
+          // Nothing lies beyond the final boss, so there is no relic to carry on: finish the run here.
+          if (DS.run && DS.run.act >= 3) {
+            tryCall('nextAct', function () { DS.Run.nextAct(); });
+            tryCall('Run.end', function () { DS.Run.end(true); });
+            go('victory');
+            return;
+          }
+          go('bossrelic');
+          return;
+        }
         leaveRoom('map');
       }
 
@@ -1252,6 +1268,8 @@
       const claimedId = r && r.claimed ? String(r.claimed) : null;
       const offers = claimedId ? [claimedId] : (r && Array.isArray(r.choices) ? r.choices.filter(Boolean) : []);
       let busy = false;
+      // A run resumed on the final boss's relic step has nothing to choose for: go straight to the ending.
+      if (run.act >= 3 && !claimedId) { later(advance); return; }
 
       // Ends the act: next act's map, or the victory screen after the final boss.
       async function advance() {

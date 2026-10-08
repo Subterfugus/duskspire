@@ -618,7 +618,7 @@
 
   DS.defineCard({
     id: 'sh_veil_of_smoke', name: 'Veil of Smoke', class: 'shade', type: 'skill', rarity: 'uncommon',
-    cost: 1, target: 'self', icon: '🌫️',
+    cost: 1, target: 'self', icon: '💨',
     desc: 'Gain 2 Intangible. Add 2 Dazed to your discard pile.',
     effects: [
       { op: 'apply', status: 'intangible', amount: 2, to: 'self' },

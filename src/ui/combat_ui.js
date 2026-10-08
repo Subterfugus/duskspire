@@ -1659,6 +1659,11 @@
 
         let combat = null;
         try {
+          // Seed the fight from the run and floor, so quitting and choosing Continue replays the same fight
+          // (same enemy HP, same opening hand) instead of rerolling it.
+          if (run && run.seed != null && DS.rng && typeof DS.rng.seed === 'function') {
+            DS.rng.seed([run.seed, run.act, run.floor, params.encounterId].join(':'));
+          }
           combat = new DS.Combat(run, params.encounterId, { fromEvent: !!params.fromEvent });
         } catch (err) {
           logErr('new DS.Combat', err);

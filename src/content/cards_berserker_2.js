@@ -273,7 +273,7 @@
 
   DS.defineCard({
     id: 'bz_ash_breath', name: 'Ash Breath', class: 'berserker', type: 'skill', rarity: 'common',
-    cost: 0, target: 'self', icon: '🌫️', exhaust: true,
+    cost: 0, target: 'self', icon: '💨', exhaust: true,
     desc: 'Gain 4 Block. Exhaust.',
     effects: [{ op: 'block', amount: 4, to: 'self' }],
     upgrade: { desc: 'Gain 6 Block. Exhaust.', effects: [{ op: 'block', amount: 6, to: 'self' }] }

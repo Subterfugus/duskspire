@@ -47,7 +47,7 @@
   });
 
   DS.definePotion({
-    id: 'po_weak_mist', name: 'Weakening Mist', rarity: 'common', icon: '🌫️', color: '#8e9aa6', target: 'all_enemies',
+    id: 'po_weak_mist', name: 'Weakening Mist', rarity: 'common', icon: '💨', color: '#8e9aa6', target: 'all_enemies',
     desc: 'Apply 3 Weak to ALL enemies.',
     effects: [{op: 'apply', status: 'weak', amount: 3, to: 'all_enemies'}]
   });

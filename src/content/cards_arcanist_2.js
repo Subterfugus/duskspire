@@ -232,7 +232,7 @@
 
   DS.defineCard({
     id: 'ar_frost_nip', name: 'Frost Nip', class: 'arcanist', type: 'attack', rarity: 'common',
-    cost: 1, target: 'enemy', icon: '🌫️',
+    cost: 1, target: 'enemy', icon: '💨',
     desc: 'Deal 4 damage. Apply 2 Chill.',
     effects: [
       { op: 'damage', amount: 4 },

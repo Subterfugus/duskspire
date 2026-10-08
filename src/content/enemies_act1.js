@@ -373,7 +373,7 @@
   });
 
   DS.defineEnemy({
-    id: 'a1_gloomwraith', name: 'Gloomwraith', act: 1, tier: 'elite', hp: [88, 96], icon: '🌫️', scale: 1.3,
+    id: 'a1_gloomwraith', name: 'Gloomwraith', act: 1, tier: 'elite', hp: [88, 96], icon: '💨', scale: 1.3,
     desc: 'Feeds on spent cards: every card you exhaust makes it stronger. Its shroud halves your attacks. Punishes exhaust decks.',
     triggers: {
       onCardExhausted: [{ op: 'apply', status: 'strength', amount: 1, to: 'self' }]

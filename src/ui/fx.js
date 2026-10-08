@@ -441,6 +441,9 @@
       if (!o.prio) return null;
       live.shift();
     }
+    if (typeof document !== 'undefined' && document.hidden) return null; // no frames run while hidden, so nothing would ever clear it
+    // Frames stopped (window minimised or covered): drop the stale backlog instead of piling up behind it.
+    if (live.length && lastWall && Date.now() - lastWall > 2000) live.length = 0;
     if (!ensureCanvas()) return null;
     o.age = -(o.delay || 0);
     o.life = o.life || 0.8;
@@ -466,8 +469,10 @@
     raf = requestAnimationFrame(frame);
   }
 
+  let lastWall = 0;
   function frame(ts) {
     raf = 0;
+    lastWall = Date.now();
     if (!g2 || !canvas) { live.length = 0; return; }
     const dt = lastTs ? clamp((ts - lastTs) / 1000, 0.001, 0.05) : 0.016;
     lastTs = ts;
@@ -1364,13 +1369,16 @@
 
   function onRelic() {
     if (!hasDom()) return;
+    // The starter relic is granted while the character screen is still up: no fanfare for that one.
+    const scr = DS.ui && DS.ui.current;
+    if (scr === 'charselect' || scr === 'menu') return;
     const v = viewport();
     const a = { x: v.w / 2, y: v.h * 0.46, w: 120, h: 120 };
     addNode(mk('div', 'ds-rays'), 1300);
     glowAt(a, 'rgba(255,225,140,.95)', 4);
     flash('gold', 700, 0.8);
-    ringAt(a, '#fff0b0', 20, 240, 0.8, 7);
-    ringAt(a, '#ffd26a', 10, 170, 0.65, 4, 0.1);
+    ringAt(a, '#fff0b0', 16, 150, 0.7, 5);
+    ringAt(a, '#ffd26a', 8, 105, 0.55, 3, 0.1);
     for (let i = 0; i < 18; i++) {
       const ang = (i / 18) * 6.2832 + rnd(-0.1, 0.1);
       const sp = rnd(260, 520);
@@ -1571,7 +1579,7 @@
       if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
       else boot();
       document.addEventListener('visibilitychange', () => {
-        if (document.hidden) { live.length = 0; stopFireworks(); }
+        if (document.hidden) { live.length = 0; stopFireworks(); if (g2 && canvas) { g2.setTransform(1, 0, 0, 1, 0, 0); g2.clearRect(0, 0, canvas.width, canvas.height); } }
       });
     }
   } catch (e) { /* ignore */ }

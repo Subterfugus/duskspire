@@ -2836,11 +2836,11 @@ div.ds-target-arrow::after {
 
 :root {
   /* unit art is sized in px by combat_ui (96 * enemy scale). Zoom compensates for the fluid root font size. */
-  --art-k: 1.45;
+  --art-k: 1.7;
 }
-@media (min-height: 860px) and (min-width: 1500px) { :root { --art-k: 1.9; } }
-@media (min-height: 1000px) and (min-width: 1750px) { :root { --art-k: 2.2; } }
-@media (min-height: 1250px) and (min-width: 2200px) { :root { --art-k: 2.9; } }
+@media (min-height: 860px) and (min-width: 1500px) { :root { --art-k: 2.15; } }
+@media (min-height: 1000px) and (min-width: 1750px) { :root { --art-k: 2.6; } }
+@media (min-height: 1250px) and (min-width: 2200px) { :root { --art-k: 3.4; } }
 
 /* ---- a. collisions ---------------------------------------------------- */
 
@@ -3324,8 +3324,8 @@ div.ds-target-arrow::after {
 /* combat field sits fully above the hand, so hp bars and status rows are never hidden behind cards */
 .ds-combat-field { bottom: calc(var(--hand-h) + 2.2rem); padding: 2.2rem 2.4rem 0.6rem; }
 .ds-combat::before { bottom: calc(var(--hand-h) + 0.4rem); }
-.ds-combat .ds-enemy.ds-tier-boss .ds-unit-art > .ds-art { zoom: calc(var(--art-k) * 0.76 * var(--crowd, 1)); }
-.ds-combat .ds-enemy.ds-tier-elite .ds-unit-art > .ds-art { zoom: calc(var(--art-k) * 0.88 * var(--crowd, 1)); }
+.ds-combat .ds-enemy.ds-tier-boss .ds-unit-art > .ds-art { zoom: calc(var(--art-k) * 0.68 * var(--crowd, 1)); }
+.ds-combat .ds-enemy.ds-tier-elite .ds-unit-art > .ds-art { zoom: calc(var(--art-k) * 0.82 * var(--crowd, 1)); }
 
 /* hand: stay clear of the corner widgets (exhaust pile, end turn) even with ten cards */
 .ds-hand { padding: 0 13.4rem; }
@@ -3457,3 +3457,22 @@ div.ds-target-arrow::after {
 .ds-topbar > .ds-scr-tb-group:has(> .ds-relic) { margin-right: auto; }
 .ds-topbar:not(:has(> .ds-scr-tb-group > .ds-relic)) > .ds-scr-tb-spacer { flex: 1 1 0; }
 .ds-scr-menu-meta .ds-scr-muted { color: #d2c5a3; text-shadow: 0 0.1rem 0.3rem #000; font-size: 0.85rem; }
+
+/* Character select: three readable sample cards; the separate hover preview is no longer needed. */
+.ds-scr-samples > .ds-card { --u: 0.45rem; cursor: default; }
+.ds-scr-detail > .ds-scr-section { align-self: start; }
+.ds-scr-samples { gap: 1rem; }
+.ds-scr-preview { display: none; }
+.ds-scr-detail > .ds-scr-sample-row { align-self: center; }
+
+/* A lone enemy (or a pair) does not need the full right gutter; stand it further right, opposite the player. */
+.ds-combat .ds-enemies:not(:has(> :nth-child(3))) { padding-right: 9rem; justify-content: space-evenly; }
+.ds-combat .ds-enemies:not(:has(> :nth-child(2))) { padding-right: 4rem; padding-left: 8rem; }
+
+/* The map is zoomed as a whole (see mapZoom in screens.js), so its node glyphs are sized in px, not rem. */
+.ds-scr-map .ds-map-node { font-size: 27px; border-width: 3px; }
+
+/* Combat log: keep wrapped text aligned with its first line instead of sliding under the turn tag. */
+:root .ds-log-entry { display: flex; align-items: baseline; }
+:root .ds-log-entry > .ds-log-turn { flex: 0 0 2.2em; }
+:root .ds-log-entry > .ds-log-turn + * { flex: 1 1 auto; min-width: 0; }

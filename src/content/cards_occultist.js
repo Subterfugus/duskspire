@@ -482,7 +482,7 @@
 
   DS.defineCard({
     id: 'oc_withering_touch', name: 'Withering Touch', class: 'occultist', type: 'attack', rarity: 'common',
-    cost: 2, target: 'enemy', icon: '🌫️',
+    cost: 2, target: 'enemy', icon: '💨',
     desc: 'Deal 11 damage. Apply 1 Weak.',
     effects: [{ op: 'damage', amount: 11 }, { op: 'apply', status: 'weak', amount: 1, to: 'target' }],
     upgrade: {

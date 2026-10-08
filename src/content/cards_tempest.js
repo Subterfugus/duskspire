@@ -281,7 +281,7 @@
     id: 'tp_static_field',
     name: 'Static Field',
     type: 'buff',
-    icon: '🌫️',
+    icon: '💨',
     stacks: true,
     desc: 'At the start of each turn, apply {n} Static to ALL enemies.',
     triggers: {
@@ -504,7 +504,7 @@
 
   DS.defineCard({
     id: 'tp_still_breath', name: 'Still Breath', class: 'tempest', type: 'skill', rarity: 'starter',
-    cost: 1, target: 'self', icon: '🌫️',
+    cost: 1, target: 'self', icon: '💨',
     desc: 'Gain 3 Block. Enter Stillness: gain 2 Block at the end of each turn.',
     effects: [
       { op: 'block', amount: 3, to: 'self' },
