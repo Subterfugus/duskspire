@@ -12,7 +12,7 @@ Haiku 5.5 subagents (high reasoning); the design jobs used Sonnet 5.5 (medium).
 
 ## Where things stand
 
-**v2 is working.** Smoke passes with 0 errors, all 406 engine tests pass, and I played it in a browser.
+**v2 is working.** Smoke passes with 0 errors and 0 warnings, all 406 engine tests pass, and I played it in a browser.
 
 | Content loaded | Count |
 |---|---|
@@ -76,7 +76,6 @@ Tuning applied on 2026-10-08 (all by hand, measured with `node tools/balance.js`
 ## Known problems
 
 - Class spread is still 13-43% for the bot. Tempest falls off in act 3 (24% survival); Shade and Arcanist struggle in act 2.
-- One smoke warning remains: Dusk Heart can beat the arcanist bot even with +1000 HP.
 - A large ring effect plays when a relic triggers (very visible with Tempest's Wind Bell every turn). Cosmetic, but oversized.
 - A few card emoji render as a blank square on this machine (for example Still Breath). Font coverage, cosmetic.
 - `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`.
