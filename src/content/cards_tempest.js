@@ -19,7 +19,7 @@
     name: 'Kaze',
     title: 'The Wandering Tempest',
     desc: 'A storm-monk who walks between weathers. Builds Momentum from every card, shifts between the raging Gale and the still eye of Stillness, and charges enemies with Static until the storm breaks.',
-    hp: 72,
+    hp: 78,
     gold: 99,
     icon: '🌩️',
     color: '#8e44ad',

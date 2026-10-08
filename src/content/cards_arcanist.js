@@ -3,7 +3,7 @@
   const DS = (globalThis.DS = globalThis.DS || {});
 
   // ---------------------------------------------------------------------------
-  // ARCANIST: Mirell, the Glasswright. Glass-cannon spellcaster, 68 HP.
+  // ARCANIST: Mirell, the Glasswright. Glass-cannon spellcaster, 75 HP.
   // Four archetypes that reward different deck choices:
   //   Arcane Charge : skills and attacks bank Arcane Charge (ar_arcane_charge); finishers spend it
   //                   through Value objects (ar_arcane_finale, ar_arcane_aegis, ar_charged_bolt, ar_spell_tithe).
@@ -20,7 +20,7 @@
     name: 'Mirell',
     title: 'The Glasswright',
     desc: 'A brittle, brilliant spellcaster who hoards arcane charge and unleashes it in one devastating finisher. Fire, frost and raw mana all answer to her.',
-    hp: 68,
+    hp: 75,
     gold: 99,
     icon: '🔮',
     color: '#2980b9',

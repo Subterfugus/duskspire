@@ -313,7 +313,7 @@
 
   DS.defineCard({
     id: 'wd_power_sapwell', name: 'Sapwell', class: 'warden', type: 'power', rarity: 'common',
-    cost: 1, target: 'self', icon: '🪣',
+    cost: 2, target: 'self', icon: '🪣',
     desc: 'Gain 1 Sapwell: at the end of each of your turns, gain 1 Regen.',
     effects: [{ op: 'apply', status: 'wd_sapwell', amount: 1, to: 'self' }],
     upgrade: {

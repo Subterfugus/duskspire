@@ -48,37 +48,49 @@ window on v2.
   to enemy attack damage (`BASE_TUNING` in `src/engine/combat.js`), because the simulator showed most classes
   almost never winning.
 
-## Balance (heuristic bot, 30 full runs per class, after the damage cut)
+## Balance (heuristic bot, 40 full runs per class, after the third tuning pass)
 
-| Class | Win rate | Reaches act 2 |
-|---|---|---|
-| Warden | 37% | 100% |
-| Occultist | 30% | 73% |
-| Berserker | 13% | 90% |
-| Shade | 10% | 77% |
-| Arcanist | 10% | 67% |
-| Tempest | 3% | 77% |
+| Class | Win rate | Survives act 1 | Survives act 2 | Survives act 3 |
+|---|---|---|---|---|
+| Warden | 43% | 98% | 69% | 63% |
+| Berserker | 30% | 90% | 56% | 60% |
+| Occultist | 20% | 75% | 50% | 53% |
+| Shade | 15% | 85% | 38% | 46% |
+| Arcanist | 15% | 70% | 39% | 55% |
+| Tempest | 13% | 95% | 55% | 24% |
 
-Before the cut it was Warden 32% and every other class 0-5%. The bot plays defensively, which flatters Warden; a
-human should do better with the others. Tempest is the weakest and stalls in some fights.
+History: untuned v2 was Warden 32% and every other class 0-5%. The bot plays defensively, which flatters Warden.
+
+Tuning applied on 2026-10-08 (all by hand, measured with `node tools/balance.js`):
+- Global: enemy attack damage x0.85 (`BASE_TUNING` in `src/engine/combat.js`).
+- Hardest bosses and elites cut 8-12% HP and 10-20% damage: Fallen Seraph, Sanctum Idol, Duskspire Heart, Orrery Titan,
+  Awakened Void, Siren Queen, Clockwork Colossus, Kraken Mother, Oathbound Twins, Brass Assessor, Plague Priest,
+  Hoard Mimic, Drowned Knight, Ashen Gatekeeper.
+- Tempest: Momentum now adds +1 attack damage per stack; Wind Bell also grants 2 Momentum each turn; Gust Lash gains
+  Momentum before it hits; HP 72 -> 78.
+- Warden: HP 88 -> 80; Ironbark Charm 6 -> 4 Block; Sapwell costs 2.
+- Shade HP 70 -> 76; Arcanist HP 68 -> 75.
+- Choir of the Fallen: Mending Hymn heals only the most wounded enemy for 5 (was 3 to every enemy), and is used less.
+  The stalemate warning is gone from the smoke test.
 
 ## Known problems
 
-- Class balance is uneven (table above). Act 3 was never fully tuned.
-- Two smoke warnings: `a3_enc_b_choir_hymn` can stalemate (three healers); Dusk Heart beats the arcanist bot even
-  with +1000 HP.
-- A large faint ring drifts across backgrounds; I believe it is part of the backdrop art. Cosmetic.
-- With 10 cards in hand at 1280x720 the rightmost card sits partly under the End Turn button.
+- Class spread is still 13-43% for the bot. Tempest falls off in act 3 (24% survival); Shade and Arcanist struggle in act 2.
+- One smoke warning remains: Dusk Heart can beat the arcanist bot even with +1000 HP.
+- A large ring effect plays when a relic triggers (very visible with Tempest's Wind Bell every turn). Cosmetic, but oversized.
+- A few card emoji render as a blank square on this machine (for example Still Breath). Font coverage, cosmetic.
 - `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`.
 - Leaving a fight and choosing Continue restarts that fight with a reshuffled deck (could be used to reroll a hand).
 - The map and some art use fixed pixel sizes, so they look small at 1920x1080.
+- Not verified by anyone: audio, acts 2 and 3 in the browser, larger resolutions, the Electron window on v2.
 - `backup_v1/` still holds the original working v1 game.
 
-## Next steps (if you want more)
+Fixed on 2026-10-08: the End Turn button now sits above the hand, so a 10-card hand no longer slides under it
+(checked in the browser at 1280x720).
 
-1. Tune act 3 and the weak classes (Tempest first) with `node tools/balance.js`.
-2. Fix the choir stalemate and the hand / End Turn overlap.
-3. Check the Electron window and larger resolutions.
+## Repository
+
+Private GitHub repo: https://github.com/Subterfugus/duskspire (branch `main`). Commit and push from this folder.
 
 ## How the agents were run
 

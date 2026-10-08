@@ -340,7 +340,7 @@
     name: 'Orrery Titan',
     act: 3,
     tier: 'elite',
-    hp: [185, 200],
+    hp: [167, 180],
     icon: '⚙️',
     scale: 1.8,
     desc: 'A clockwork planetarium. Every fourth card you play sparks a comet at you. It runs a four-turn orbit that ends in Eclipse Ring; below half health the orbit tightens.',
@@ -348,11 +348,11 @@
       onCardPlayed: { every: 4, effects: [hitPlayer(6)] }
     },
     moves: {
-      revolve: { name: 'Revolve', intent: 'attack', effects: [dmg(11, 2)] },
-      retrograde: { name: 'Retrograde', intent: 'attack_debuff', effects: [dmg(8), debuffPlayer('frail', 1)] },
+      revolve: { name: 'Revolve', intent: 'attack', effects: [dmg(9, 2)] },
+      retrograde: { name: 'Retrograde', intent: 'attack_debuff', effects: [dmg(7), debuffPlayer('frail', 1)] },
       align: { name: 'Align', intent: 'defend', effects: [blk(20), buffSelf('strength', 2)] },
-      eclipse_ring: { name: 'Eclipse Ring', intent: 'attack', effects: [dmg(24)] },
-      comet_storm: { name: 'Comet Storm', intent: 'attack', effects: [dmg(6, 4)] }
+      eclipse_ring: { name: 'Eclipse Ring', intent: 'attack', effects: [dmg(20)] },
+      comet_storm: { name: 'Comet Storm', intent: 'attack', effects: [dmg(5, 4)] }
     },
     ai: ({ turn, self }) => {
       const low = self.hp <= self.maxHp * 0.5;

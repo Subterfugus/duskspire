@@ -84,7 +84,7 @@
     name: 'Sanctum Idol',
     act: 3,
     tier: 'minion',
-    hp: [44, 50],
+    hp: [40, 45],
     icon: '🏛️',
     scale: 0.9,
     desc: 'A gilded idol that hums hymns of frailty and guards its master with plate.',
@@ -92,7 +92,7 @@
     moves: {
       hymn: { name: 'Hymn of Frailty', intent: 'debuff', effects: [debuffPlayer('weak', 1)] },
       ward: { name: 'Ward', intent: 'defend', effects: [blk(14)] },
-      rebuke: { name: 'Rebuke', intent: 'attack', effects: [dmg(10)] }
+      rebuke: { name: 'Rebuke', intent: 'attack', effects: [dmg(9)] }
     },
     pattern: { type: 'sequence', moves: ['hymn', 'ward', 'rebuke'], loop: true }
   });
@@ -448,14 +448,14 @@
     name: 'Fallen Seraph',
     act: 3,
     tier: 'elite',
-    hp: [190, 205],
+    hp: [167, 180],
     icon: '😇',
     scale: 1.7,
     desc: 'Once radiant, now furious. It gains strength whenever you play a skill, and calls idols to its side.',
     onSpawn: [buffSelf('enrage', 1)],
     moves: {
-      judgment: { name: 'Judgment', intent: 'attack_debuff', effects: [dmg(18), debuffPlayer('weak', 1)] },
-      wing_sweep: { name: 'Wing Sweep', intent: 'attack', effects: [dmg(8, 3)] },
+      judgment: { name: 'Judgment', intent: 'attack_debuff', effects: [dmg(14), debuffPlayer('weak', 1)] },
+      wing_sweep: { name: 'Wing Sweep', intent: 'attack', effects: [dmg(6, 3)] },
       sanctify: { name: 'Sanctify', intent: 'special', effects: [summon('a3_sanctum_idol', 1)] },
       fallen_grace: { name: 'Fallen Grace', intent: 'defend', effects: [blk(22), healSelf(10), buffSelf('mark', 1)] }
     },
@@ -566,7 +566,7 @@
     name: 'The Awakened Void',
     act: 3,
     tier: 'boss',
-    hp: [380, 405],
+    hp: [350, 373],
     icon: '🌌',
     scale: 2.0,
     desc: 'A horror that wakes from the dark between stars. Its attacks seed your deck with Void. At 35% it rebirths once, healing deeply and summoning motes.',
@@ -579,10 +579,10 @@
       }
     },
     moves: {
-      void_pulse: { name: 'Void Pulse', intent: 'attack_debuff', effects: [dmg(16), addCard('status_void', 'discard', 1)] },
+      void_pulse: { name: 'Void Pulse', intent: 'attack_debuff', effects: [dmg(14), addCard('status_void', 'discard', 1)] },
       eclipse_veil: { name: 'Eclipse Veil', intent: 'defend', effects: [blk(22), debuffPlayer('a3_dread', 1)] },
-      hollow_gale: { name: 'Hollow Gale', intent: 'attack', effects: [dmg(9, 3)] },
-      nullify: { name: 'Nullify', intent: 'attack_debuff', effects: [dmg(22), debuffPlayer('weak', 1)] }
+      hollow_gale: { name: 'Hollow Gale', intent: 'attack', effects: [dmg(8, 3)] },
+      nullify: { name: 'Nullify', intent: 'attack_debuff', effects: [dmg(20), debuffPlayer('weak', 1)] }
     },
     ai: ({ turn, self }) => {
       const reborn = !!self.statuses.mark;
@@ -600,7 +600,7 @@
     name: 'The Duskspire Heart',
     act: 3,
     tier: 'boss',
-    hp: [500, 530],
+    hp: [450, 477],
     icon: '💜',
     scale: 2.0,
     desc: 'The beating core of the Summit. It starts armored against debuffs, swells before each heart beat, and every fifth card you play strengthens it.',
@@ -609,15 +609,15 @@
       onCardPlayed: { every: 5, effects: [addCard('status_wound', 'discard', 1), buffSelf('strength', 1)] }
     },
     moves: {
-      blood_shots: { name: 'Blood Shots', intent: 'attack', effects: [dmg(6, 4)] },
+      blood_shots: { name: 'Blood Shots', intent: 'attack', effects: [dmg(5, 4)] },
       buff_heart: { name: 'Swell', intent: 'buff', effects: [buffSelf('strength', 2), blk(10)] },
-      heart_beat: { name: 'Heart Beat', intent: 'attack', effects: [dmg(30)] },
+      heart_beat: { name: 'Heart Beat', intent: 'attack', effects: [dmg(26)] },
       debilitate: {
         name: 'Debilitate',
         intent: 'debuff',
         effects: [debuffPlayer('vulnerable', 2), debuffPlayer('weak', 2), addCard('status_dazed', 'discard', 2)]
       },
-      final_throes: { name: 'Final Throes', intent: 'attack', effects: [dmg(7, 6)] }
+      final_throes: { name: 'Final Throes', intent: 'attack', effects: [dmg(6, 6)] }
     },
     ai: ({ turn, self }) => {
       const frac = self.hp / self.maxHp;

@@ -15,7 +15,7 @@
     name: 'Warden',
     title: 'The Verdant Bulwark',
     desc: 'An armored guardian of the old forest. The Warden turns every point of Block into a weapon, lets thorns punish anyone who dares to strike, and grows stronger the longer a battle drags on.',
-    hp: 88,
+    hp: 80,
     gold: 99,
     icon: '🛡️',
     color: '#b7950b',
@@ -32,14 +32,14 @@
   DS.defineRelic({
     id: 'wd_ironbark_charm',
     name: 'Ironbark Charm',
-    desc: 'At the start of each combat, gain 6 Block.',
+    desc: 'At the start of each combat, gain 4 Block.',
     flavor: 'Carved from the heartwood of a tree that has never once fallen.',
     rarity: 'starter',
     icon: '📿',
     class: 'warden',
     passive: {},
     triggers: {
-      onTurnStart: { when: { turn: 1 }, effects: [{ op: 'block', amount: 6, to: 'self' }] }
+      onTurnStart: { when: { turn: 1 }, effects: [{ op: 'block', amount: 4, to: 'self' }] }
     }
   });
 

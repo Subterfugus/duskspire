@@ -517,7 +517,7 @@
     name: 'The Drowned Knight',
     act: 2,
     tier: 'elite',
-    hp: [150, 160],
+    hp: [135, 144],
     icon: '⚓',
     scale: 1.4,
     onSpawn: [{ op: 'apply', status: 'thorns', amount: 2, to: 'self' }],
@@ -527,12 +527,12 @@
         intent: 'buff',
         effects: [{ op: 'apply', status: 'strength', amount: 2, to: 'self' }],
       },
-      tide_cleave: { name: 'Tidal Cleave', intent: 'attack', effects: [{ op: 'damage', amount: 13 }] },
+      tide_cleave: { name: 'Tidal Cleave', intent: 'attack', effects: [{ op: 'damage', amount: 11 }] },
       brine_shield: {
         name: 'Brine Shield',
         intent: 'attack_defend',
         effects: [
-          { op: 'damage', amount: 6 },
+          { op: 'damage', amount: 5 },
           { op: 'block', amount: 14, to: 'self' },
         ],
       },
@@ -540,11 +540,11 @@
         name: 'Drag Under',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 10 },
+          { op: 'damage', amount: 9 },
           { op: 'apply', status: 'weak', amount: 1 },
         ],
       },
-      last_tide: { name: 'Last Tide', intent: 'attack', effects: [{ op: 'damage', amount: 18 }] },
+      last_tide: { name: 'Last Tide', intent: 'attack', effects: [{ op: 'damage', amount: 16 }] },
     },
     // Opens with its oath, cycles through its strikes, and once below half health
     // unleashes the Last Tide every third turn.
@@ -562,22 +562,22 @@
     name: 'Hoard Mimic',
     act: 2,
     tier: 'elite',
-    hp: [140, 150],
+    hp: [126, 135],
     icon: '🎁',
     scale: 1.2,
     onSpawn: [{ op: 'apply', status: 'enrage', amount: 1, to: 'self' }],
     moves: {
       lurk: { name: 'Lie Still', intent: 'sleep', effects: [] },
-      gobble: { name: 'Gobble', intent: 'attack', effects: [{ op: 'damage', amount: 14 }] },
+      gobble: { name: 'Gobble', intent: 'attack', effects: [{ op: 'damage', amount: 12 }] },
       tongue: {
         name: 'Sticky Tongue',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 7 },
+          { op: 'damage', amount: 6 },
           { op: 'apply', status: 'entangle', amount: 1 },
         ],
       },
-      swallow: { name: 'Swallow Whole', intent: 'attack', effects: [{ op: 'damage', amount: 8, times: 2 }] },
+      swallow: { name: 'Swallow Whole', intent: 'attack', effects: [{ op: 'damage', amount: 7, times: 2 }] },
       spit: {
         name: 'Spit Coins',
         intent: 'debuff',
@@ -638,7 +638,7 @@
     name: 'Plague Priest',
     act: 2,
     tier: 'elite',
-    hp: [125, 132],
+    hp: [113, 119],
     icon: '☣️',
     scale: 1.2,
     triggers: {
@@ -654,7 +654,7 @@
         name: 'Pestilent Censer',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 8 },
+          { op: 'damage', amount: 7 },
           { op: 'apply', status: 'poison', amount: 4 },
         ],
       },
@@ -662,7 +662,7 @@
         name: 'Rot Bloom',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 6 },
+          { op: 'damage', amount: 5 },
           { op: 'add_card', card: 'status_slimed', to: 'discard', amount: 2 },
         ],
       },
@@ -697,7 +697,7 @@
     name: 'The Siren Queen',
     act: 2,
     tier: 'boss',
-    hp: [258, 272],
+    hp: [227, 239],
     icon: '👑',
     scale: 1.7,
     onSpawn: [{ op: 'apply', status: 'artifact', amount: 1, to: 'self' }],
@@ -722,7 +722,7 @@
         name: 'Undertow',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 12 },
+          { op: 'damage', amount: 10 },
           { op: 'apply', status: 'vulnerable', amount: 1 },
         ],
       },
@@ -735,7 +735,7 @@
         name: 'Tidal Throne',
         intent: 'attack_buff',
         effects: [
-          { op: 'damage', amount: 22 },
+          { op: 'damage', amount: 19 },
           { op: 'apply', status: 'strength', amount: 3, to: 'self' },
         ],
       },
@@ -761,7 +761,7 @@
     name: 'Clockwork Colossus',
     act: 2,
     tier: 'boss',
-    hp: [262, 276],
+    hp: [231, 243],
     icon: '🦾',
     scale: 2.0,
     onSpawn: [{ op: 'apply', status: 'plated_armor', amount: 6, to: 'self' }],
@@ -770,12 +770,12 @@
       onEnemyDeath: [{ op: 'apply', status: 'plated_armor', amount: 2, to: 'self' }],
     },
     moves: {
-      gear: { name: 'Gear Grind', intent: 'attack', effects: [{ op: 'damage', amount: 10, times: 2 }] },
+      gear: { name: 'Gear Grind', intent: 'attack', effects: [{ op: 'damage', amount: 9, times: 2 }] },
       piston: {
         name: 'Piston Punch',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 11 },
+          { op: 'damage', amount: 9 },
           { op: 'apply', status: 'vulnerable', amount: 1 },
         ],
       },
@@ -796,7 +796,7 @@
         name: 'OVERWIND',
         intent: 'attack',
         effects: [
-          { op: 'damage', amount: 24 },
+          { op: 'damage', amount: 20 },
           { op: 'remove_status', status: 'a2_winding', to: 'self' },
         ],
       },
@@ -826,7 +826,7 @@
     name: 'Sir Harrow the Unbroken',
     act: 2,
     tier: 'boss',
-    hp: [150, 160],
+    hp: [135, 144],
     icon: '⚔️',
     scale: 1.5,
     onSpawn: [{ op: 'apply', status: 'plated_armor', amount: 8, to: 'self' }],
@@ -836,7 +836,7 @@
         name: 'Shield Bash',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 10 },
+          { op: 'damage', amount: 9 },
           { op: 'apply', status: 'vulnerable', amount: 1 },
         ],
       },
@@ -861,7 +861,7 @@
         intent: 'debuff',
         effects: [{ op: 'add_card', card: 'status_wound', to: 'draw', amount: 2 }],
       },
-      charge: { name: 'Sworn Charge', intent: 'attack', effects: [{ op: 'damage', amount: 16 }] },
+      charge: { name: 'Sworn Charge', intent: 'attack', effects: [{ op: 'damage', amount: 14 }] },
     },
     // Below half health the oath breaks: he stops reciting it and charges between bashes.
     ai: (ctx) => {
@@ -876,7 +876,7 @@
     name: 'Dame Veyl the Pale',
     act: 2,
     tier: 'boss',
-    hp: [125, 135],
+    hp: [113, 122],
     icon: '🤺',
     scale: 1.3,
     onSpawn: [{ op: 'apply', status: 'artifact', amount: 1, to: 'self' }],
@@ -886,11 +886,11 @@
         name: 'Hex Lance',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 7 },
+          { op: 'damage', amount: 6 },
           { op: 'apply', status: 'weak', amount: 2 },
         ],
       },
-      pierce: { name: 'Piercing Oath', intent: 'attack', effects: [{ op: 'damage', amount: 5, times: 3 }] },
+      pierce: { name: 'Piercing Oath', intent: 'attack', effects: [{ op: 'damage', amount: 4, times: 3 }] },
       swear: {
         name: 'Swear Again',
         intent: 'buff',

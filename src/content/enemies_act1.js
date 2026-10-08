@@ -452,7 +452,7 @@
   });
 
   DS.defineEnemy({
-    id: 'a1_ashen_gatekeeper', name: 'The Ashen Gatekeeper', act: 1, tier: 'boss', hp: [210, 225], icon: '🗿', scale: 2,
+    id: 'a1_ashen_gatekeeper', name: 'The Ashen Gatekeeper', act: 1, tier: 'boss', hp: [193, 207], icon: '🗿', scale: 2,
     desc: 'An armored guardian that alternates between Iron Stance (you deal half damage while it braces) and Ember Fury (strength, then crushing blows). Below a quarter health it makes its last stand.',
     moves: {
       iron_stance: { name: 'Iron Stance', intent: 'defend', effects: [
@@ -463,10 +463,10 @@
         { op: 'apply', status: 'strength', amount: 1, to: 'self' },
         { op: 'apply', status: 'vigor', amount: 4, to: 'self' }
       ] },
-      bulwark_slam: { name: 'Bulwark Slam', intent: 'attack', effects: [{ op: 'damage', amount: 13 }] },
-      chain_sweep: { name: 'Chain Sweep', intent: 'attack', effects: [{ op: 'damage', amount: 7, times: 2 }] },
+      bulwark_slam: { name: 'Bulwark Slam', intent: 'attack', effects: [{ op: 'damage', amount: 12 }] },
+      chain_sweep: { name: 'Chain Sweep', intent: 'attack', effects: [{ op: 'damage', amount: 6, times: 2 }] },
       last_stand: { name: 'Last Stand', intent: 'attack_debuff', effects: [
-        { op: 'damage', amount: 15 },
+        { op: 'damage', amount: 14 },
         { op: 'apply', status: 'vulnerable', amount: 2, to: 'target' }
       ] }
     },

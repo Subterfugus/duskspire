@@ -663,7 +663,7 @@
     name: 'The Kraken Mother',
     act: 2,
     tier: 'boss',
-    hp: [246, 262],
+    hp: [221, 236],
     icon: '🐙',
     scale: 1.9,
     onSpawn: [{ op: 'apply', status: 'plated_armor', amount: 6, to: 'self' }],
@@ -676,8 +676,8 @@
       },
     },
     moves: {
-      maul: { name: 'Maw Crush', intent: 'attack', effects: [{ op: 'damage', amount: 14 }] },
-      squeeze: { name: 'Squeezing Coils', intent: 'attack', effects: [{ op: 'damage', amount: 8, times: 2 }] },
+      maul: { name: 'Maw Crush', intent: 'attack', effects: [{ op: 'damage', amount: 12 }] },
+      squeeze: { name: 'Squeezing Coils', intent: 'attack', effects: [{ op: 'damage', amount: 7, times: 2 }] },
       ink: {
         name: 'Ink Veil',
         intent: 'debuff',
@@ -691,7 +691,7 @@
         intent: 'buff',
         effects: [{ op: 'summon', enemy: 'a2_kraken_tentacle', amount: 2 }],
       },
-      embrace: { name: 'Final Embrace', intent: 'attack', effects: [{ op: 'damage', amount: 20 }] },
+      embrace: { name: 'Final Embrace', intent: 'attack', effects: [{ op: 'damage', amount: 18 }] },
     },
     ai: (ctx) => {
       const low = ctx.self.hp <= ctx.self.maxHp * 0.5;
@@ -712,7 +712,7 @@
     name: 'The Brass Assessor',
     act: 2,
     tier: 'boss',
-    hp: [262, 280],
+    hp: [241, 258],
     icon: '🧮',
     scale: 1.8,
     onSpawn: [{ op: 'apply', status: 'plated_armor', amount: 10, to: 'self' }],
@@ -721,7 +721,7 @@
         name: 'Audit',
         intent: 'attack_debuff',
         effects: [
-          { op: 'damage', amount: 13 },
+          { op: 'damage', amount: 12 },
           { op: 'add_card', card: 'curse_doubt', to: 'discard', amount: 1 },
         ],
       },
@@ -729,7 +729,7 @@
         name: 'Confiscate',
         intent: 'attack',
         effects: [
-          { op: 'damage', amount: 12 },
+          { op: 'damage', amount: 11 },
           {
             op: 'if',
             cond: { left: { v: 'gold' }, cmp: '>=', right: 25 },
@@ -752,7 +752,7 @@
         name: 'Compound Interest',
         intent: 'attack',
         effects: [
-          { op: 'damage', amount: 40 },
+          { op: 'damage', amount: 36 },
           { op: 'remove_status', status: 'a2_spring', to: 'self' },
         ],
       },

@@ -15,7 +15,7 @@
     name: 'Shade',
     title: 'The Silent Knife',
     desc: 'A nimble assassin who wins fights before they begin. Shade poisons enemies from the shadows, showers the battlefield with cheap shivs, and cycles through the deck faster than anyone else.',
-    hp: 70,
+    hp: 76,
     gold: 99,
     icon: '🗡️',
     color: '#27ae60',
