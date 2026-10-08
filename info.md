@@ -79,8 +79,8 @@ Done and checked in the browser at 1280x720 unless noted:
   treasure, boss relic, act 2 and act 3 backdrops, victory. No game errors.
 - After the final boss the game no longer offers a boss relic "to carry on"; it goes straight to victory.
 - Quitting mid-fight and choosing Continue now replays the same fight (same enemy HP and opening hand). Each fight is
-  seeded from run seed + act + floor + encounter in .
-- The map now scales with the window ( in ); checked at 1920x1080.
+  seeded from run seed + act + floor + encounter in `src/ui/combat_ui.js`.
+- The map now scales with the window (`mapZoom` in `src/ui/screens.js`); checked at 1920x1080.
 - Unit art is larger; one or two enemies stand further right instead of bunching mid-screen.
 - Character select shows three readable sample cards instead of thumbnails plus a hover preview.
 - The "blank square" card icon was the fog emoji, which is drawn as a pale square on Windows. Replaced in 10 places.
@@ -91,8 +91,8 @@ Done and checked in the browser at 1280x720 unless noted:
   came after and only had a syntax check plus the browser run.)
 
 Not finished:
-- Electron on v2 is still unverified. Two scripted launch attempts exited without producing a result (only GPU
-  messages in the output); cause not investigated.
+- Electron on v2 is still unverified. Two scripted launch attempts produced no result because the user closed the
+  window on purpose. Do not relaunch it without asking.
 - No balance changes were made in this pass. Fresh 40-run sims: Tempest 20%, Shade 8%, Arcanist 10%. Shade and
   Arcanist mostly die in act 2 (34% and 30% survival), Tempest in act 3 (32%). 40 runs is noisy.
 - The final-boss reward screen still offers a card that can never be used.
@@ -101,9 +101,9 @@ Not finished:
 ## Known problems
 
 - Class spread is still wide for the bot (Warden about 43%, Shade and Arcanist about 10%).
--  still injects its own CSS that duplicates rules in . Harmless; left alone.
+- `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`. Harmless; left alone.
 - Not verified by anyone: audio, the Electron window on v2.
--  still holds the original working v1 game.
+- `backup_v1/` still holds the original working v1 game.
 
 ## Repository
 
