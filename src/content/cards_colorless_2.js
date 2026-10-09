@@ -196,7 +196,7 @@
   });
 
   DS.defineCard({
-    id: 'cl_dark_bargain', name: 'Dark Bargain', class: 'colorless', type: 'skill', rarity: 'uncommon',
+    id: 'cl_dark_bargain', name: 'Midnight Bargain', class: 'colorless', type: 'skill', rarity: 'uncommon',
     cost: 0, target: 'none', icon: '📿',
     desc: 'Gain 2 Energy. Add a Wound to your discard pile.',
     effects: [
@@ -516,7 +516,7 @@
 
   // Exhaust-for-value.
   DS.defineCard({
-    id: 'cl_burnt_offering', name: 'Burnt Offering', class: 'colorless', type: 'skill', rarity: 'rare',
+    id: 'cl_burnt_offering', name: 'Ash Tithe', class: 'colorless', type: 'skill', rarity: 'rare',
     cost: 1, target: 'self', icon: '🔥',
     desc: 'Gain 2 Energy for each other card in your hand. Exhaust all cards in your hand.',
     effects: [{ op: 'energy', amount: { v: 'hand', mul: 2 } }, { op: 'exhaust', amount: 'all' }],

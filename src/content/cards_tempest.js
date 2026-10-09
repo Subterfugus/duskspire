@@ -37,14 +37,15 @@
   DS.defineRelic({
     id: 'tp_wind_bell',
     name: 'Wind Bell',
-    desc: 'At the start of your turn, gain 2 Momentum. The first card you play each turn that costs 2 or more gives 1 Energy back.',
+    desc: 'At the start of your turn, gain 3 Momentum. The first card you play each turn that costs 2 or more gives 1 Energy back. At the end of each combat, heal 4 HP.',
     flavor: 'It only rings for something worth the breath.',
     rarity: 'starter',
     icon: '🔔',
     class: 'tempest',
     passive: {},
     triggers: {
-      onTurnStart: [{ op: 'apply', status: 'tp_momentum', amount: 2, to: 'self' }],
+      onTurnStart: [{ op: 'apply', status: 'tp_momentum', amount: 3, to: 'self' }],
+      onCombatEnd: [{ op: 'heal', amount: 4 }],
       onCardPlayed: {
         when: { costAtLeast: 2 },
         oncePerTurn: true,

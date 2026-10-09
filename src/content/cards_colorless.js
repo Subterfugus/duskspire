@@ -335,7 +335,7 @@
   });
 
   DS.defineCard({
-    id: 'cl_recycle', name: 'Recycle', class: 'colorless', type: 'skill', rarity: 'uncommon',
+    id: 'cl_recycle', name: 'Reclaim', class: 'colorless', type: 'skill', rarity: 'uncommon',
     cost: 1, target: 'self', icon: '♻️',
     desc: 'Discard 2 cards. Draw 3 cards.',
     effects: [{ op: 'discard', amount: 2 }, { op: 'draw', amount: 3 }],
@@ -447,7 +447,7 @@
   });
 
   DS.defineCard({
-    id: 'cl_bloodlust', name: 'Bloodlust', class: 'colorless', type: 'power', rarity: 'uncommon',
+    id: 'cl_bloodlust', name: 'Red Hunger', class: 'colorless', type: 'power', rarity: 'uncommon',
     cost: 1, target: 'self', icon: '😈',
     desc: 'Whenever you kill an enemy, gain 4 Block.',
     effects: [{ op: 'apply', status: 'cl_bloodlust_st', amount: 4, to: 'self' }],
@@ -665,7 +665,7 @@
   });
 
   DS.defineCard({
-    id: 'cl_gravebind', name: 'Gravebind', class: 'colorless', type: 'attack', rarity: 'rare',
+    id: 'cl_gravebind', name: 'Grave Knot', class: 'colorless', type: 'attack', rarity: 'rare',
     cost: 2, target: 'enemy', icon: '🪢',
     desc: 'Deal 8 damage. Apply 2 Vulnerable.',
     effects: [{ op: 'damage', amount: 8, to: 'target' }, { op: 'apply', status: 'vulnerable', amount: 2, to: 'target' }],

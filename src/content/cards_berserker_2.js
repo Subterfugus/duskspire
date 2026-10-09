@@ -693,7 +693,7 @@
   // ===========================================================================
   DS.defineRelic({
     id: 'bz_relic2_war_drum',
-    name: 'War Drum',
+    name: 'Warband Drum',
     desc: 'At the start of each combat, gain 3 Vigor.',
     flavor: 'The beat starts before the first blow.',
     rarity: 'common',

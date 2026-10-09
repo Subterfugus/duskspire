@@ -98,9 +98,42 @@ Not finished:
 - The final-boss reward screen still offers a card that can never be used.
 - Not started: README, audio check, settings/history/compendium review at other sizes.
 
+## v3 (2026-10-08, evening)
+
+Loaded content now: 9 characters, 1074 cards, 227 relics (24 of them Trials), 95 potions, 183 encounters, 84 events.
+
+Added:
+- Three classes: Artificer (Ottilie Brass, `af_`, Haiku-written), Beastcaller (Wren Ashfang, `bc_`) and Revenant
+  (Sir Aldous Vane, `rv_`), the last two each written by one Sonnet 5.5 agent. 70-75 cards, 14-16 statuses and 5 relics each.
+- Third card sets for Berserker and Warden, a third colorless set, 30 potions (`pc_`), 17 act 3 enemies.
+- Trials (`src/content/trials.js`, `mu_`): optional run modifiers picked on the character screen. They are relics with
+  `trial: true`, never drop as loot (`DS.relicPool` in core.js) and scale the score (`scoreRun` in run.js).
+- `tools/content_tests.js`: plays every card, potion, relic, encounter and event once and compares simple card text with
+  the effect. Fault-injected once: it failed on a Strike whose text and damage disagreed. It does not fail on an unknown
+  status id; `tools/smoke.js` does.
+- README.md, docs/GUIDE.md, docs/MODDING.md.
+- Character screen relaid out for nine classes plus the Trials picker; fits 1280x720.
+- Seven cards/relics renamed because they shared a name with something a player could hold at the same time.
+
+Dropped: ten content files the Haiku workflows never finished (shade_3, arcanist_3, tempest_2, occultist_2, relics_d/e,
+enemies_act1_c/act2_c, events_d/e). They are deleted and not loaded.
+
+What went wrong: I launched three workflows with a group number in `args`; it did not arrive as a number, so all three
+ran group 0 and three agents wrote each of six files at once. The user then asked for no more Haiku and no big workflows.
+
+Checks at the end of v3: smoke PASS (0 errors, 0 warnings), engine tests PASS, content tests PASS (3310 checks).
+Browser: Artificer first fight; Revenant and Beastcaller each with every class card added to the deck, six fights.
+
+Bot win rates after v3 (heuristic bot, 40 runs each unless noted, so noisy): Warden 55% (HP now 72), Occultist 45%,
+Beastcaller 30% (60 runs), Revenant 28% (200 runs), Shade 28% (50 runs), Artificer 18-23%, Tempest 20%, Arcanist 18%,
+Berserker 15%. Starter relics of Shade, Arcanist and Tempest now act every turn and heal after each combat.
+The bot plays defensively, which flatters Warden; HP cuts barely move it.
+
 ## Known problems
 
-- Class spread is still wide for the bot (Warden about 43%, Shade and Arcanist about 10%).
+- Class spread is still wide for the bot (Warden 55%, Occultist 45%, the rest 15-30%).
+- The Haiku-written v3 content has passed the automated checks but has not been read card by card.
+- Revenant cards with custom effects (pile returns, per-debuff damage) do not show that part in the damage preview.
 - `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`. Harmless; left alone.
 - Not verified by anyone: audio, the Electron window on v2.
 - `backup_v1/` still holds the original working v1 game.
@@ -111,17 +144,13 @@ Private GitHub repo: https://github.com/Subterfugus/duskspire (branch `main`). C
 
 ## How the agents were run
 
-- Rule set by the user: Haiku 5.5 high for everything; Sonnet 5.5 medium only for design, at most 5 at once; no Opus agents.
+- Current rule (2026-10-08 evening): no Haiku, no big workflows; at most 5 Sonnet agents and only when that is cheaper
+  than the lead session doing the work; no Opus agents. The earlier rule was Haiku 5.5 high for everything.
 - A single workflow runs at most CPU count minus 2 agents at once (6 on this machine, hard cap 16). To get 20 running
   together, the build was launched as 4 workflows of 5 agents each, with disjoint file ownership per agent.
 - Shared spec all agents code against: `CONTRACT.md` (section 10 is v2).
 - Totals: v1 used 38 Haiku runs; v2 build 17 Haiku + 3 Sonnet; v2 integration and balance 7 Haiku + 1 Sonnet (two cut short).
 - Workflow scripts are in `tools/workflows/` (build.js, fix.js, v2.js, v2fix.js).
-
-## Outstanding request
-
-Raise the workflow size setting so 20-agent workflows are the norm. Not done: it is "Dynamic workflow size" in
-`/config`, which only opens from an interactive `claude` terminal. The concurrency cap itself has no setting I could find.
 
 ## Project location
 

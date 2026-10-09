@@ -130,7 +130,7 @@
 
   DS.defineRelic({
     id: 'rb_reapers_tally',
-    name: "Reaper's Tally",
+    name: "Gravedigger's Ledger",
     rarity: 'rare',
     icon: '💀',
     desc: 'Whenever you kill an enemy, gain 1 Strength.',
