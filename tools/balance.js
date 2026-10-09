@@ -72,6 +72,24 @@ const LOAD = [
   'src/content/cards_warden_2.js', 'src/content/relics_c.js', 'src/content/potions_b.js',
   'src/content/enemies_act1_b.js', 'src/content/enemies_act2_b.js', 'src/content/enemies_act3_b.js',
   'src/content/events_c.js',
+  'src/content/cards_artificer.js',
+  'src/content/cards_beastcaller.js',
+  'src/content/cards_revenant.js',
+  'src/content/cards_berserker_3.js',
+  'src/content/cards_shade_3.js',
+  'src/content/cards_arcanist_3.js',
+  'src/content/cards_warden_3.js',
+  'src/content/cards_tempest_2.js',
+  'src/content/cards_occultist_2.js',
+  'src/content/cards_colorless_3.js',
+  'src/content/relics_d.js',
+  'src/content/relics_e.js',
+  'src/content/potions_c.js',
+  'src/content/enemies_act1_c.js',
+  'src/content/enemies_act2_c.js',
+  'src/content/enemies_act3_c.js',
+  'src/content/events_d.js',
+  'src/content/events_e.js',
 ];
 for (const rel of LOAD) {
   const abs = path.join(ROOT, rel);
@@ -788,7 +806,7 @@ WORLD_TIMEOUT.unref();
 
 async function main() {
   const started = Date.now();
-  const all = ['berserker', 'shade', 'arcanist', 'warden', 'tempest', 'occultist'];
+  const all = ['berserker', 'shade', 'arcanist', 'warden', 'tempest', 'occultist', 'artificer', 'beastcaller', 'revenant'];
   const chars = all.filter((id) => DS.characters && DS.characters[id] && (!ONLY_CHAR || ONLY_CHAR === id));
   const header = [
     '==============================================================',

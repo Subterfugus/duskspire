@@ -438,3 +438,12 @@ New CSS classes (styles.css owns their rules; UI files just use them): `.ds-tier
 `.ds-asc-pip` (+`-active`, `-locked`), `.ds-history-row` (+`-won`, `-lost`), `.ds-stat-tile`, `.ds-achievement`
 (+`-locked`), `.ds-settings-row`, `.ds-slider`, `.ds-toggle` (+`-on`), `.ds-howto`, `.ds-search-input`, `.ds-tab`
 (+`-active`), `.ds-badge`, `.ds-art`, `.ds-backdrop`, `.ds-undiscovered`.
+
+## 11. Version 3 (content expansion)
+
+New content files, loaded after `events_c.js` in this order (in `index.html`, `tools/smoke.js`, `tools/tests.js`, `tools/balance.js`):
+`cards_artificer.js` (`af_`), `cards_beastcaller.js` (`bc_`), `cards_revenant.js` (`rv_`), `cards_berserker_3.js` (`bz_`), `cards_shade_3.js` (`sh_`), `cards_arcanist_3.js` (`ar_`), `cards_warden_3.js` (`wd_`), `cards_tempest_2.js` (`tp_`), `cards_occultist_2.js` (`oc_`), `cards_colorless_3.js` (`cl_`, `curse_`, `status_`), `relics_d.js` (`rd_`), `relics_e.js` (`re_`), `potions_c.js` (`pc_`), `enemies_act1_c.js` (`a1_`), `enemies_act2_c.js` (`a2_`), `enemies_act3_c.js` (`a3_`), `events_d.js` (`ed_`), `events_e.js` (`ee_`).
+Three new playable characters: `artificer` (prefix `af_`), `beastcaller` (prefix `bc_`), `revenant` (prefix `rv_`).
+A file with the same base as an older one (for example `cards_shade_3.js`) shares that prefix and must not reuse any id or
+display name already defined in the older files. Custom status ids must differ from every card id.
+All v3 files use only what sections 1-10 define: no engine changes.

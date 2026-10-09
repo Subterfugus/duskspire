@@ -70,6 +70,24 @@ const LOAD_ORDER = [
   'src/content/enemies_act2_b.js',
   'src/content/enemies_act3_b.js',
   'src/content/events_c.js',
+  'src/content/cards_artificer.js',
+  'src/content/cards_beastcaller.js',
+  'src/content/cards_revenant.js',
+  'src/content/cards_berserker_3.js',
+  'src/content/cards_shade_3.js',
+  'src/content/cards_arcanist_3.js',
+  'src/content/cards_warden_3.js',
+  'src/content/cards_tempest_2.js',
+  'src/content/cards_occultist_2.js',
+  'src/content/cards_colorless_3.js',
+  'src/content/relics_d.js',
+  'src/content/relics_e.js',
+  'src/content/potions_c.js',
+  'src/content/enemies_act1_c.js',
+  'src/content/enemies_act2_c.js',
+  'src/content/enemies_act3_c.js',
+  'src/content/events_d.js',
+  'src/content/events_e.js',
   'src/ui/kit.js',
   'src/ui/art.js',
   'src/ui/audio.js',
@@ -101,7 +119,7 @@ const VALUE_SOURCES = [
 const TARGETS = ['target', 'self', 'all_enemies', 'random_enemy', 'player'];
 const ADD_TO = ['hand', 'draw', 'discard'];
 const CMP = ['>', '>=', '<', '<=', '==', '!='];
-const CARD_CLASSES = ['berserker', 'shade', 'arcanist', 'warden', 'tempest', 'occultist', 'colorless', 'curse', 'status'];
+const CARD_CLASSES = ['berserker', 'shade', 'arcanist', 'warden', 'tempest', 'occultist', 'artificer', 'beastcaller', 'revenant', 'colorless', 'curse', 'status'];
 const CARD_TYPES = ['attack', 'skill', 'power', 'curse', 'status'];
 const CARD_RARITIES = ['starter', 'common', 'uncommon', 'rare', 'special'];
 const CARD_TARGETS = ['enemy', 'all_enemies', 'random_enemy', 'self', 'none'];
@@ -124,6 +142,7 @@ const COND_KEYS = ['minGold', 'minHp', 'hasRelic', 'hasCardType'];
 const CHARACTER_FILES = {
   berserker: 'cards_berserker.js', shade: 'cards_shade.js', arcanist: 'cards_arcanist.js', warden: 'cards_warden.js',
   tempest: 'cards_tempest.js', occultist: 'cards_occultist.js',
+  artificer: 'cards_artificer.js', beastcaller: 'cards_beastcaller.js', revenant: 'cards_revenant.js',
 };
 const CHARACTERS = Object.keys(CHARACTER_FILES).filter((id) => fs.existsSync(path.join(ROOT, 'src/content', CHARACTER_FILES[id])));
 const CHARACTER_STARTER_SIZE = 11;
@@ -139,7 +158,7 @@ const CURSE_IDS = [
 ];
 const STATUS_CARD_IDS = ['status_wound', 'status_dazed', 'status_burn', 'status_slimed', 'status_void'];
 const CLASS_PREFIX = {
-  berserker: 'bz_', shade: 'sh_', arcanist: 'ar_', warden: 'wd_', tempest: 'tp_', occultist: 'oc_',
+  berserker: 'bz_', shade: 'sh_', arcanist: 'ar_', warden: 'wd_', tempest: 'tp_', occultist: 'oc_', artificer: 'af_', beastcaller: 'bc_', revenant: 'rv_',
   colorless: 'cl_', curse: 'curse_', status: 'status_',
 };
 // Id prefixes allowed per content file (statuses.js is exempt: built-ins have no prefix).
@@ -166,6 +185,24 @@ const FILE_PREFIX = {
   'events_a.js': ['ea_'],
   'events_b.js': ['eb_'],
   'events_c.js': ['ec_'],
+  'cards_artificer.js': ['af_'],
+  'cards_beastcaller.js': ['bc_'],
+  'cards_revenant.js': ['rv_'],
+  'cards_berserker_3.js': ['bz_'],
+  'cards_shade_3.js': ['sh_'],
+  'cards_arcanist_3.js': ['ar_'],
+  'cards_warden_3.js': ['wd_'],
+  'cards_tempest_2.js': ['tp_'],
+  'cards_occultist_2.js': ['oc_'],
+  'cards_colorless_3.js': ['cl_', 'curse_', 'status_'],
+  'relics_d.js': ['rd_'],
+  'relics_e.js': ['re_'],
+  'potions_c.js': ['pc_'],
+  'enemies_act1_c.js': ['a1_'],
+  'enemies_act2_c.js': ['a2_'],
+  'enemies_act3_c.js': ['a3_'],
+  'events_d.js': ['ed_'],
+  'events_e.js': ['ee_'],
 };
 // Reuse rule: a *_2.js / *_b.js file without an entry of its own reuses the prefixes of its base file
 // (cards_berserker_2.js -> cards_berserker.js -> bz_). Its ids must still not collide (checked as duplicates).

@@ -821,6 +821,9 @@ button { font-family: inherit; }
 .ds-card-class-warden    { --class-color: #b9a24a; }
 .ds-card-class-tempest   { --class-color: #2ec4b6; }
 .ds-card-class-occultist { --class-color: #a8325e; }
+.ds-card-class-artificer { --class-color: #d08a2e; }
+.ds-card-class-beastcaller { --class-color: #5fa043; }
+.ds-card-class-revenant { --class-color: #7f8fa6; }
 .ds-card-class-colorless { --class-color: #9aa0a6; }
 .ds-card-class-curse     { --class-color: #55702a; }
 .ds-card-class-status    { --class-color: #6b7079; }
