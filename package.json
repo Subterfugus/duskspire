@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Duskspire, a Slay-the-Spire-style roguelike deckbuilder",
   "main": "main.js",
+  "license": "MIT",
   "private": true,
   "scripts": {
     "start": "electron .",

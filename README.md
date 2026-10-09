@@ -147,4 +147,4 @@ balance. The orchestration scripts are in [tools/workflows/](tools/workflows/), 
 
 ## Licence
 
-No licence has been chosen yet, so all rights are reserved by default.
+Duskspire is released under the MIT licence. See [LICENSE](LICENSE).
