@@ -455,3 +455,5 @@ at the character screen. A Trial is an ordinary relic with `rarity: 'event'`, no
 `trial: true` and `trialScore: <integer percent>` (positive for a handicap, negative for a boon; the final score is multiplied
 by 1 + sum/100). Relics with `trial: true` are never offered by the game; the UI adds the chosen ones with `DS.Run.addRelic(id)`
 right after `DS.Run.start`. They use only existing relic triggers and passives.
+
+Note (2026-10-08): of the files listed above, only cards_artificer, cards_beastcaller, cards_revenant, cards_berserker_3, cards_warden_3, cards_colorless_3, potions_c, enemies_act3_c and trials were built. The other ten were dropped and are not loaded.

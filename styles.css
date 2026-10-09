@@ -3499,3 +3499,30 @@ div.ds-target-arrow::after {
 .ds-trial-chip.ds-trial-on { background: linear-gradient(180deg, rgba(150, 50, 40, 0.75), rgba(70, 20, 20, 0.85)); border-color: #e8793c; color: #fff0d8; }
 .ds-trial-chip.ds-trial-boon.ds-trial-on { background: linear-gradient(180deg, rgba(40, 110, 80, 0.75), rgba(16, 50, 40, 0.85)); border-color: #5fbf7a; }
 .ds-trial-pct { font-size: 0.68rem; opacity: 0.8; font-variant-numeric: tabular-nums; }
+
+/* Character screen layout with Trials: samples sit top-right; the left column stacks details, setup and the start row. */
+.ds-scr-detail { grid-template-rows: auto auto auto; row-gap: 0.5rem; }
+.ds-scr-detail > .ds-scr-sample-row { grid-row: 1 / span 3; align-self: start; margin-top: 2.1rem; }
+.ds-scr-detail > .ds-scr-section { grid-row: 1; align-self: start; }
+.ds-scr-detail > .ds-scr-seedrow { align-self: start; }
+.ds-scr-setup .ds-asc-picker, .ds-scr-setup .ds-trial-picker { display: flex; flex-direction: column; gap: 0.25rem; }
+.ds-scr-setup .ds-scr-section { margin: 0; }
+.ds-trial-chips { max-height: 4.1rem; }
+.ds-scr-detail-text .ds-scr-pick-desc { font-size: 0.86rem; line-height: 1.35; }
+.ds-scr-charpage { overflow-y: auto; max-height: 100vh; }
+/* Trials go under the sample cards on the right, so the start button stays on screen. */
+.ds-scr-detail > .ds-scr-setup { display: contents; }
+.ds-scr-setup > .ds-asc-picker { grid-column: 1; grid-row: 2; }
+.ds-scr-setup > .ds-trial-picker { grid-column: 2; grid-row: 3; align-self: start; }
+.ds-scr-detail > .ds-scr-sample-row { grid-row: 1 / span 2; }
+.ds-scr-detail > .ds-scr-seedrow { grid-column: 1; grid-row: 3; align-self: end; }
+.ds-trial-chips { max-height: 5.9rem; }
+.ds-trial-chips { max-height: 3.9rem; }
+.ds-scr-samples > .ds-card { --u: 0.4rem; }
+.ds-scr-detail > .ds-scr-sample-row { margin-top: 1.8rem; }
+.ds-scr-charpage { gap: 0.4rem; padding-top: 0.6rem; }
+.ds-scr-charpage .ds-scr-head .ds-title, .ds-scr-charpage > :first-child .ds-title { font-size: 1.9rem; }
+.ds-scr-charpage { padding: 0 0.25rem 0.4rem; }
+.ds-scr-charpage .ds-scr-head .ds-title { font-size: 1.7rem; }
+.ds-scr-charpage .ds-scr-head .ds-subtitle { display: none; }
+.ds-scr-detail { padding: 0.6rem 1.1rem; }
