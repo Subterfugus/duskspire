@@ -827,12 +827,56 @@
     return h || 1;
   }
 
-  function startRun(id, asc, seedText) {
+  // Trials: optional run modifiers (relics flagged trial:true), toggled on the character screen.
+  function trialDefs() {
+    return Object.keys(DS.relics || {}).map(function (k) { return DS.relics[k]; })
+      .filter(function (d) { return d && d.trial; })
+      .sort(function (a, b) { return (Number(b.trialScore) || 0) - (Number(a.trialScore) || 0) || String(a.name).localeCompare(String(b.name)); });
+  }
+
+  function trialPicker(st, rerender) {
+    const defs = trialDefs();
+    if (!defs.length) return null;
+    let total = 0;
+    const chips = defs.map(function (d) {
+      const on = st.trials.indexOf(d.id) >= 0;
+      const pct = Number(d.trialScore) || 0;
+      if (on) total += pct;
+      const chip = el('button', {
+        class: ['ds-trial-chip', on ? 'ds-trial-on' : '', pct < 0 ? 'ds-trial-boon' : ''].join(' '),
+        onclick: function () {
+          const i = st.trials.indexOf(d.id);
+          if (i >= 0) st.trials.splice(i, 1); else st.trials.push(d.id);
+          rerender();
+        }
+      }, [
+        txt('span', 'ds-trial-icon', d.icon || '🎲'),
+        txt('span', 'ds-trial-name', d.name || d.id),
+        txt('span', 'ds-trial-pct', (pct >= 0 ? '+' : '') + pct + '%')
+      ]);
+      tip(chip, '<b>' + esc(d.name || d.id) + '</b><br>' + esc(d.desc || '') + '<br><i>Score ' + (pct >= 0 ? '+' : '') + pct + '%</i>');
+      return chip;
+    });
+    const label = st.trials.length
+      ? st.trials.length + ' active · score ' + (total >= 0 ? '+' : '') + total + '%'
+      : 'Optional. Handicaps raise your score, boons lower it.';
+    return el('div', { class: 'ds-trial-picker' }, [
+      el('div', { class: 'ds-scr-section', text: 'Trials' }),
+      el('div', { class: 'ds-trial-chips' }, chips),
+      txt('div', 'ds-scr-muted', label)
+    ]);
+  }
+
+  function startRun(id, asc, seedText, trials) {
     const seed = seedNumber(seedText);
     const opts = { ascension: Math.max(0, Math.min(maxAsc(id), Number(asc) || 0)) };
     if (seed !== undefined) opts.seed = seed;
     const ok = tryCall('Run.start', function () { DS.Run.start(id, opts); return true; }, false);
     if (!ok || !DS.run) { toast('Could not start a run.'); return; }
+    (trials || []).forEach(function (tid) {
+      tryCall('addTrial', function () { DS.Run.addRelic(tid); });
+    });
+    tryCall('save', function () { DS.Run.save(); });
     runAchievements = [];
     noteRunBase();
     go('map');
@@ -910,7 +954,7 @@
   DS.ui.registerScreen('charselect', {
     enter: function (params, root) {
       const chars = charsList();
-      const st = { id: null, asc: 0, seed: '' };
+      const st = { id: null, asc: 0, seed: '', trials: lastPick.trials ? lastPick.trials.slice() : [] };
       if (lastPick.id && chars.some(function (c) { return c.id === lastPick.id; })) {
         st.id = lastPick.id;
         st.asc = Math.min(lastPick.asc || 0, maxAsc(lastPick.id));
@@ -995,15 +1039,15 @@
           ]),
           txt('div', 'ds-scr-section', 'Sample cards'),
           el('div', { class: 'ds-scr-sample-row' }, [samples, preview]),
-          ascPicker(c.id, st, render),
+          el('div', { class: 'ds-scr-setup' }, [ascPicker(c.id, st, render), trialPicker(st, render)]),
           el('div', { class: 'ds-scr-seedrow' }, [
             seedInput,
             el('button', {
               class: 'ds-btn ds-btn-primary ds-scr-begin',
               text: 'Begin run',
               onclick: function () {
-                lastPick = { id: c.id, asc: st.asc };
-                startRun(c.id, st.asc, st.seed);
+                lastPick = { id: c.id, asc: st.asc, trials: st.trials.slice() };
+                startRun(c.id, st.asc, st.seed, st.trials);
               }
             })
           ])
@@ -1126,7 +1170,7 @@
       }
       const tier = (first && first.tier) || params.tier || 'normal';
       const fromEvent = first ? !!first.fromEvent : !!params.fromEvent;
-      const title = tier === 'boss' ? 'Boss Defeated!' : tier === 'elite' ? 'Elite Defeated' : 'Battle Won';
+      const title = tier === 'boss' ? (DS.run && DS.run.act >= 3 ? 'The Spire Falls Silent' : 'Boss Defeated!') : tier === 'elite' ? 'Elite Defeated' : 'Battle Won';
       const sub = fromEvent ? 'Spoils of an unexpected battle' : 'Claim what you have earned';
       let selected = -1;
       let cardNote = '';
@@ -1134,6 +1178,9 @@
       function claim(kind, arg) {
         return engineBool('Run.claimReward', function () { return DS.Run.claimReward(kind, arg); });
       }
+      // After the final boss there is no deck left to build: settle the card reward so only the spoils show.
+      const finalBoss = tier === 'boss' && !!DS.run && DS.run.act >= 3;
+      if (finalBoss) { claim('card', null); cardNote = 'The climb ends here. No card is needed.'; }
 
       function takeCard(choices) {
         if (selected < 0 || !choices[selected]) return;

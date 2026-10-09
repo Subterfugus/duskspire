@@ -230,6 +230,7 @@
     return Object.keys(DS.relics).map(function (k) { return DS.relics[k]; }).filter(function (def) {
       // class-specific relics only for that class (or when no class is requested for class-less relics)
       if (def.class && def.class !== f.class) return false;
+      if (def.trial && !f.trial) return false; // Trials are chosen at run start, never found as loot
       if (f.rarity !== undefined) {
         if (def.rarity !== f.rarity) return false;
       } else if (def.rarity === 'starter') {

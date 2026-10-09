@@ -447,3 +447,11 @@ Three new playable characters: `artificer` (prefix `af_`), `beastcaller` (prefix
 A file with the same base as an older one (for example `cards_shade_3.js`) shares that prefix and must not reuse any id or
 display name already defined in the older files. Custom status ids must differ from every card id.
 All v3 files use only what sections 1-10 define: no engine changes.
+
+### 11.1 Trials (run modifiers)
+
+`src/content/trials.js` (prefix `mu_`, loaded last of the content files) defines Trials: optional modifiers the player switches on
+at the character screen. A Trial is an ordinary relic with `rarity: 'event'`, no `class`, and two extra fields:
+`trial: true` and `trialScore: <integer percent>` (positive for a handicap, negative for a boon; the final score is multiplied
+by 1 + sum/100). Relics with `trial: true` are never offered by the game; the UI adds the chosen ones with `DS.Run.addRelic(id)`
+right after `DS.Run.start`. They use only existing relic triggers and passives.

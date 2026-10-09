@@ -87,6 +87,7 @@ const LOAD = [
   'src/content/enemies_act3_c.js',
   'src/content/events_d.js',
   'src/content/events_e.js',
+  'src/content/trials.js',
 ];
 const notLoaded = [];
 const loadFailures = [];

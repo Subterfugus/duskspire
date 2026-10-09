@@ -1376,6 +1376,9 @@
     { id: 'ach_win_warden', name: 'Iron Keeper', desc: 'Win a run as the Warden.', icon: '🛡️' },
     { id: 'ach_win_tempest', name: 'Storm Breaker', desc: 'Win a run as the Tempest.', icon: '⛈️' },
     { id: 'ach_win_occultist', name: 'Unhallowed Crown', desc: 'Win a run as the Occultist.', icon: '🕯️' },
+    { id: 'ach_win_artificer', name: 'Works as Designed', desc: 'Win a run as the Artificer.', icon: '⚙️' },
+    { id: 'ach_win_beastcaller', name: 'Leader of the Pack', desc: 'Win a run as the Beastcaller.', icon: '🐺' },
+    { id: 'ach_win_revenant', name: 'Twice Buried', desc: 'Win a run as the Revenant.', icon: '⚰️' },
     { id: 'ach_asc_1', name: 'Hardened Climb', desc: 'Win a run on ascension 1 or higher.', icon: '🔥' },
     { id: 'ach_asc_3', name: 'Frugal Victor', desc: 'Win a run on ascension 3 or higher.', icon: '🍂' },
     { id: 'ach_asc_5', name: 'Ordeal Survivor', desc: 'Win a run on ascension 5 or higher.', icon: '⚔️' },
@@ -1414,6 +1417,9 @@
     ach_win_warden: (c) => c.won && c.character === 'warden',
     ach_win_tempest: (c) => c.won && c.character === 'tempest',
     ach_win_occultist: (c) => c.won && c.character === 'occultist',
+    ach_win_artificer: (c) => c.won && c.character === 'artificer',
+    ach_win_beastcaller: (c) => c.won && c.character === 'beastcaller',
+    ach_win_revenant: (c) => c.won && c.character === 'revenant',
     ach_asc_1: (c) => c.won && c.ascension >= 1,
     ach_asc_3: (c) => c.won && c.ascension >= 3,
     ach_asc_5: (c) => c.won && c.ascension >= 5,
@@ -1542,7 +1548,13 @@
       Math.floor((st.goldEarned || 0) / 10);
     const winBonus = r.won ? 1000 + Math.max(0, 300 - (st.turns || 0)) : 0;
     const mult = 1 + 0.25 * clampAsc(r.ascension);
-    return Math.round((base + winBonus) * mult);
+    // Trials (relics flagged trial:true) scale the score by their summed trialScore percent, floored at x0.25.
+    let trialPct = 0;
+    (r.relics || []).forEach((e) => {
+      const d = e && DS.relics && DS.relics[e.id];
+      if (d && d.trial) trialPct += Number(d.trialScore) || 0;
+    });
+    return Math.round((base + winBonus) * mult * Math.max(0.25, 1 + trialPct / 100));
   }
 
   // Records a finished run once. Returns the ids of achievements it unlocked.

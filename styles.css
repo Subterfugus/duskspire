@@ -3117,7 +3117,7 @@ div.ds-target-arrow::after {
 .ds-scr-charpage { max-width: 78rem; gap: 0.6rem; padding-bottom: 0.8rem; }
 .ds-scr-chargrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(10.4rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(7.4rem, 1fr));
   gap: 0.7rem;
 }
 .ds-scr-chargrid > .ds-scr-char {
@@ -3479,3 +3479,23 @@ div.ds-target-arrow::after {
 :root .ds-log-entry { display: flex; align-items: baseline; }
 :root .ds-log-entry > .ds-log-turn { flex: 0 0 2.2em; }
 :root .ds-log-entry > .ds-log-turn + * { flex: 1 1 auto; min-width: 0; }
+
+/* Nine champions fit on one row: tighter tiles. */
+.ds-scr-chargrid { gap: 0.5rem; }
+.ds-scr-chargrid > .ds-scr-char .ds-scr-pick-name { font-size: 0.98rem; }
+.ds-scr-chargrid > .ds-scr-char .ds-scr-rarity { font-size: 0.56rem; letter-spacing: 0.06em; }
+.ds-scr-chargrid > .ds-scr-char .ds-scr-bigicon { width: 2.8rem; height: 2.8rem; font-size: 1.7rem; }
+
+/* Trials picker on the character screen */
+.ds-scr-detail > .ds-scr-setup { grid-column: 1; grid-row: 2; display: flex; flex-direction: column; gap: 0.5rem; min-width: 0; }
+.ds-trial-chips { display: flex; flex-wrap: wrap; gap: 0.35rem; max-height: 6.6rem; overflow-y: auto; padding: 0.15rem; }
+.ds-trial-chip {
+  display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.22rem 0.55rem; cursor: pointer;
+  font: 600 0.78rem var(--font-body); color: var(--ink-dim);
+  background: rgba(20, 14, 30, 0.8); border: 1px solid rgba(224, 184, 98, 0.22); border-radius: 999px;
+  transition: background var(--t-med), border-color var(--t-med), color var(--t-med);
+}
+.ds-trial-chip:hover { border-color: var(--gold); color: var(--ink); }
+.ds-trial-chip.ds-trial-on { background: linear-gradient(180deg, rgba(150, 50, 40, 0.75), rgba(70, 20, 20, 0.85)); border-color: #e8793c; color: #fff0d8; }
+.ds-trial-chip.ds-trial-boon.ds-trial-on { background: linear-gradient(180deg, rgba(40, 110, 80, 0.75), rgba(16, 50, 40, 0.85)); border-color: #5fbf7a; }
+.ds-trial-pct { font-size: 0.68rem; opacity: 0.8; font-variant-numeric: tabular-nums; }

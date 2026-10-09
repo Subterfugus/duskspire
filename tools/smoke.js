@@ -88,6 +88,7 @@ const LOAD_ORDER = [
   'src/content/enemies_act3_c.js',
   'src/content/events_d.js',
   'src/content/events_e.js',
+  'src/content/trials.js',
   'src/ui/kit.js',
   'src/ui/art.js',
   'src/ui/audio.js',
@@ -203,6 +204,7 @@ const FILE_PREFIX = {
   'enemies_act3_c.js': ['a3_'],
   'events_d.js': ['ed_'],
   'events_e.js': ['ee_'],
+  'trials.js': ['mu_'],
 };
 // Reuse rule: a *_2.js / *_b.js file without an entry of its own reuses the prefixes of its base file
 // (cards_berserker_2.js -> cards_berserker.js -> bz_). Its ids must still not collide (checked as duplicates).

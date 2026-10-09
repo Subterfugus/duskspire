@@ -90,6 +90,7 @@ const LOAD = [
   'src/content/enemies_act3_c.js',
   'src/content/events_d.js',
   'src/content/events_e.js',
+  'src/content/trials.js',
 ];
 for (const rel of LOAD) {
   const abs = path.join(ROOT, rel);
