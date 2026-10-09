@@ -30,14 +30,16 @@
   DS.defineRelic({
     id: 'sh_shadowcloak',
     name: 'Shadowcloak',
-    desc: 'At the start of each combat, draw 2 extra cards.',
+    desc: 'At the start of each combat, draw 2 extra cards. At the start of each of your turns, apply 1 Poison to a random enemy. At the end of each combat, heal 5 HP.',
     flavor: 'Stitched from the night itself. It never quite reflects the light.',
     rarity: 'starter',
     icon: '🧥',
     class: 'shade',
     passive: {},
     triggers: {
-      onCombatStart: [{ op: 'draw', amount: 2 }]
+      onCombatStart: [{ op: 'draw', amount: 2 }],
+      onTurnStart: [{ op: 'apply', status: 'poison', amount: 1, to: 'random_enemy' }],
+      onCombatEnd: [{ op: 'heal', amount: 5 }]
     }
   });
 

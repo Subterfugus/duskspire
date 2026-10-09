@@ -20,7 +20,7 @@
     name: 'Mirell',
     title: 'The Glasswright',
     desc: 'A brittle, brilliant spellcaster who hoards arcane charge and unleashes it in one devastating finisher. Fire, frost and raw mana all answer to her.',
-    hp: 75,
+    hp: 78,
     gold: 99,
     icon: '🔮',
     color: '#2980b9',
@@ -38,14 +38,18 @@
   DS.defineRelic({
     id: 'ar_cinder_lamp',
     name: 'Cinder Lamp',
-    desc: 'Gain 1 Energy at the start of the first turn of each combat.',
+    desc: 'Gain 1 Energy at the start of the first turn of each combat. At the start of each of your turns, gain 1 Arcane Charge. At the end of each combat, heal 5 HP.',
     flavor: 'It never goes out, and it never stops humming.',
     rarity: 'starter',
     icon: '🏮',
     class: 'arcanist',
     passive: {},
     triggers: {
-      onTurnStart: { when: { turn: 1 }, effects: [{ op: 'energy', amount: 1 }] }
+      onTurnStart: [
+        { op: 'if', cond: { left: { v: 'turn' }, cmp: '==', right: 1 }, then: [{ op: 'energy', amount: 1 }] },
+        { op: 'apply', status: 'ar_arcane_charge', amount: 1, to: 'self' }
+      ],
+      onCombatEnd: [{ op: 'heal', amount: 5 }]
     }
   });
 
@@ -241,9 +245,9 @@
   DS.defineCard({
     id: 'ar_defend', name: 'Mage Ward', class: 'arcanist', type: 'skill', rarity: 'starter',
     cost: 1, target: 'self', icon: '🛡️',
-    desc: 'Gain 5 Block.',
-    effects: [{ op: 'block', amount: 5 }],
-    upgrade: { desc: 'Gain 8 Block.', effects: [{ op: 'block', amount: 8 }] }
+    desc: 'Gain 6 Block.',
+    effects: [{ op: 'block', amount: 6 }],
+    upgrade: { desc: 'Gain 9 Block.', effects: [{ op: 'block', amount: 9 }] }
   });
 
   DS.defineCard({

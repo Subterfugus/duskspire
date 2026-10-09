@@ -15,7 +15,7 @@
     name: 'Warden',
     title: 'The Verdant Bulwark',
     desc: 'An armored guardian of the old forest. The Warden turns every point of Block into a weapon, lets thorns punish anyone who dares to strike, and grows stronger the longer a battle drags on.',
-    hp: 80,
+    hp: 72,
     gold: 99,
     icon: '🛡️',
     color: '#b7950b',

@@ -45,7 +45,7 @@ Elsewhere, Esc closes the top dialog. In the Electron window, F11 toggles fullsc
 
 ## Features
 
-- Several playable characters, each with its own card class, starter relic and archetypes. More are in progress.
+- Nine playable characters, each with its own card class, starter relic and archetypes.
 - Three acts. Each act is a branching map of fights, elite fights, shops, rest sites, events and treasure rooms, ending
   in a boss followed by a boss relic choice.
 - Combat with energy, block, enemy intents you can read ahead, statuses, potions and relics. Hover a card to see the
@@ -53,7 +53,7 @@ Elsewhere, Esc closes the top dialog. In the Electron window, F11 toggles fullsc
 - Ascension levels 1 to 10 that make the game harder, unlocked per character by winning.
 - Trials: optional run modifiers, chosen on the character screen, that raise or lower the score.
 - Seeds. The same champion, seed and ascension give the same map and rewards.
-- Saves that resume at the exact room you left. A fight you quit mid-way starts again from the beginning.
+- Saves that resume at the exact room you left. A fight you quit mid-way starts again from its first turn, with the same enemies and opening hand.
 - A run history with achievements, a compendium with search, and a how-to-play screen with a glossary.
 - Settings for game speed, volume, music, confirming the end of a turn, screen shake, the combat log and fullscreen.
 - Art is drawn procedurally as SVG, and sound is synthesized in the browser. No image or audio files are shipped.
@@ -75,6 +75,7 @@ src/ui/             kit.js, art.js, audio.js, fx.js, screens.js, combat_ui.js, b
 tools/serve.js      static server for the browser route
 tools/smoke.js      content validator and bot fights
 tools/tests.js      engine unit tests
+tools/content_tests.js   plays every card, potion, relic, encounter and event once and checks card text against effects
 tools/balance.js    heuristic bot that plays full runs and reports win rates
 tools/engine_selftest.js   headless self-test of the core engine files
 tools/workflows/    the orchestration scripts used to split the build across agents
@@ -86,11 +87,12 @@ and content load first, then the UI.
 
 ## Checks
 
-Three commands check the project. Run them from the project root.
+Four commands check the project. Run them from the project root.
 
 ```
 node tools/smoke.js               validate every content file and run bot fights
 node tools/tests.js               run the engine unit tests
+node tools/content_tests.js       exercise every piece of content once
 node tools/balance.js --runs=20   play full runs with a heuristic bot and print win rates per character
 ```
 
@@ -108,12 +110,12 @@ node tools/balance.js --runs=20   play full runs with a heuristic bot and print 
 - The Electron window has been checked less than the browser build.
 - Audio has not been judged by ear.
 - The balance numbers come from a bot, which plays defensively, so they are a rough guide only.
-- Some characters from the next content pass are placeholders. Until their card files are finished, `node tools/smoke.js`
-  reports errors for them.
+- The newest content (Artificer, Beastcaller, Revenant, the third card sets, Trials) has had less play than the rest.
 
 ## How this was made
 
-Duskspire was built by many Claude subagents running on Claude Haiku 5.5, coordinated by a lead Claude session. Each
+Duskspire was built mostly by Claude subagents running on Claude Haiku 5.5, coordinated by a lead Claude session.
+The Beastcaller and Revenant classes were written by Sonnet 5.5 agents, and the polish and balance passes by the lead session. Each
 subagent owned a small set of files and worked against one shared document, `CONTRACT.md`, which fixes names, data
 shapes, id prefixes and the script load order. The orchestration scripts are in `tools/workflows/`. The design and QA
 passes used Sonnet 5.5, as recorded in `info.md`.
