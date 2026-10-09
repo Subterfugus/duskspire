@@ -4,7 +4,7 @@ export const meta = {
   phases: [{ title: 'Build' }, { title: 'Review' }],
 }
 
-const ROOT = '<project>'
+const ROOT = '<absolute path to the project folder>';
 const HAIKU = { model: 'haiku', effort: 'high' }
 
 const PRE = `You are one of 18 engineers working in parallel on version 3 of DUSKSPIRE, a working Slay-the-Spire-style roguelike deckbuilder (plain JS classic scripts on globalThis.DS, no build step, Electron shell). The game already has 6 characters, 741 cards, 188 relics, 65 potions, 130 enemies and 84 events, and passes its test suites. Version 3 is a pure CONTENT expansion: no engine or UI changes.

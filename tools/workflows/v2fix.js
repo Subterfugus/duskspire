@@ -9,7 +9,7 @@ export const meta = {
   ],
 }
 
-const ROOT = '<project>'
+const ROOT = '<absolute path to the project folder>';
 const HAIKU = { model: 'haiku', effort: 'high' }
 const SONNET = { model: 'sonnet', effort: 'medium' }
 const NOTES = (args && args.notes) || 'none'

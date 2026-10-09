@@ -4,7 +4,7 @@ export const meta = {
   phases: [{ title: 'V2 build' }],
 }
 
-const ROOT = '<project>'
+const ROOT = '<absolute path to the project folder>';
 const HAIKU = { model: 'haiku', effort: 'high' }
 const SONNET = { model: 'sonnet', effort: 'medium' }
 

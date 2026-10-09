@@ -4,7 +4,7 @@ export const meta = {
   phases: [{ title: 'Build', model: 'haiku' }],
 }
 
-const ROOT = '<project>'
+const ROOT = '<absolute path to the project folder>';
 const H = { model: 'haiku', effort: 'high' }
 
 const PRE = `You are one of ~20 engineers building DUSKSPIRE, a Slay-the-Spire-style roguelike deckbuilder, in parallel.

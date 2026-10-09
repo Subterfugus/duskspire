@@ -801,7 +801,7 @@
         txt('div', 'ds-scr-menu-title', 'DUSKSPIRE'),
         txt('div', 'ds-subtitle', 'Forge a deck. Climb the spire.'),
         el('div', { class: 'ds-scr-menu-meta' }, [
-          txt('span', 'ds-badge', 'v2'),
+          txt('span', 'ds-badge', 'v3'),
           txt('span', 'ds-scr-muted', 'Total wins: ' + wins + (runs ? ' · Runs: ' + runs : ''))
         ]),
         el('div', { class: 'ds-scr-menu-btns' }, buttons)

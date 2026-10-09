@@ -1,4 +1,6 @@
-# Duskspire — status as of 2026-10-08
+# Duskspire development log
+
+Working notes kept by the lead Claude session during the build, newest sections lower down. Dated 2026-10-07 to 2026-10-08.
 
 Slay-the-Spire-style roguelike deckbuilder. Plain JS, no build step, Electron shell. Built almost entirely by
 Haiku 5.5 subagents (high reasoning); the design jobs used Sonnet 5.5 (medium).
@@ -136,11 +138,6 @@ The bot plays defensively, which flatters Warden; HP cuts barely move it.
 - Revenant cards with custom effects (pile returns, per-debuff damage) do not show that part in the damage preview.
 - `combat_ui.js` still injects its own CSS that duplicates rules in `styles.css`. Harmless; left alone.
 - Not verified by anyone: audio, the Electron window on v2.
-- `backup_v1/` still holds the original working v1 game.
-
-## Repository
-
-Private GitHub repo: https://github.com/Subterfugus/duskspire (branch `main`). Commit and push from this folder.
 
 ## How the agents were run
 
@@ -151,8 +148,3 @@ Private GitHub repo: https://github.com/Subterfugus/duskspire (branch `main`). C
 - Shared spec all agents code against: `CONTRACT.md` (section 10 is v2).
 - Totals: v1 used 38 Haiku runs; v2 build 17 Haiku + 3 Sonnet; v2 integration and balance 7 Haiku + 1 Sonnet (two cut short).
 - Workflow scripts are in `tools/workflows/` (build.js, fix.js, v2.js, v2fix.js).
-
-## Project location
-
-These files are in a folder the app made for this session; deleting the session deletes the folder. Move the session
-to a permanent folder before relying on it.
